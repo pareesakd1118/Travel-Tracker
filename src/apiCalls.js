@@ -1,0 +1,1 @@
+//fetch one users data, url will be the main url + current user 

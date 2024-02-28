@@ -1,3 +1,29 @@
+* {
+  color: white;
+}
+
+#turing-logo {
+  height: 50px;
+}
+
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background: url('../images/shark-fin-cove.jpg');
+  margin: 0;
+}
+
+#dashboard {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.dashboard-widget {
+  width: 30vw;
+  height: 30vh;
+  background-color: #F7467B;
+  border-radius: 10px;
+}
+
+#bottom-div {
+  background-color: white;
+  height: 30vh;
 }
