@@ -11,19 +11,60 @@ body {
   margin: 0;
 }
 
+.pink {
+  color: #f7467b;
+}
+
 #dashboard {
   display: flex;
   justify-content: space-evenly;
 }
 
 .dashboard-widget {
-  width: 30vw;
-  height: 30vh;
-  background-color: #F7467B;
+  width: 40vw;
+  height: 50vh;
+  background-color: #f7467bce;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 5%; 
+  column-gap: 15%; 
+  width: 80%;
+}
+
+.individual-trips {
+  background-color: grey;
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trip-image {
+  width: 50%;
+  border-radius: 50%;
+}
+
+.no-pending-trips, .no-past-trips {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #bottom-div {
   background-color: white;
   height: 30vh;
+}
+
+.hidden {
+  display: none;
 }
