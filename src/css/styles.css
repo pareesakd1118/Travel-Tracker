@@ -27,3 +27,7 @@ body {
   background-color: white;
   height: 30vh;
 }
+
+.hidden {
+  display: none;
+}

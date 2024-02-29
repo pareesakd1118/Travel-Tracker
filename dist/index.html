@@ -12,12 +12,17 @@
 <body>
   <div id="welcome-div">
     <p>Welcome to Travel Tracker,</p>
-    <h1>Traveler Name</h1>
+    <h1 id="name">Traveler Name</h1>
     <p>your next travel destination awaits you</p>
   </div>
   <div id="dashboard">
-    <div class="dashboard-widget" id="past">PAST</div>
-    <div class="dashboard-widget" id="pending">PENDING</div>
+    <div class="dashboard-widget" id="past-trips">PAST
+      <div class="no-past-trips hidden">
+        <h3>You haven't taken any trips with us yet!</h3>
+        <button>Book now!</button>
+      </div>
+    </div>
+    <div class="dashboard-widget" id="pending-trips">PENDING</div>
   </div>
   <div id="bottom-div">BOTTOM</div>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
