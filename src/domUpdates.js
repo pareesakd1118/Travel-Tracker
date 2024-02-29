@@ -7,10 +7,13 @@ let welcome = document.querySelector("#welcome-div")
 let domName = document.querySelector("#name")
 let pastTripsWidget = document.querySelector("#past-trips")
 let pendingTripsWidget = document.querySelector("#pending-trips")
-let noTripsMessage = document.querySelector(".no-past-trips")
+let noPastTrips = document.querySelector(".no-past-trips")
+let noPendingTrips = document.querySelector(".no-pending-trips")
+let pastGrid = document.querySelector(".past-grid")
+let pendingGrid = document.querySelector(".pending-grid")
 
 // GLOBAL VARIABLES 
-let currentUserID = "1"
+let currentUserID = "3"
 let currentURL = "http://localhost:3001/api/v1/travelers/" + currentUserID
 
 
@@ -49,14 +52,14 @@ function displayPastTrips(id, {trips}, {destinations}) {
         console.log('PAST TRIPS:', pastTrips)
     
         pastTrips.forEach((trip) => {
-            pastTripsWidget.innerHTML += `<div>
-                                            <h3>${trip.destinationName}</h3><br>
-                                            <p>${trip.date}</p>
-                                            <p>Party of ${trip.travelers}</p
-                                        </div>`
+            pastGrid.innerHTML += `<div class="individual-trips">
+                                        <h3>${trip.destinationName}</h3><br>
+                                        <p>${trip.date}</p>
+                                        <p>Party of ${trip.travelers}</p
+                                    </div>`
         })
     } else {
-        noTripsMessage.classList.remove('hidden')
+        noPastTrips.classList.remove('hidden')
     }
 }
 
@@ -74,15 +77,15 @@ function displayPendingTrips(id, {trips}, {destinations}) {
         console.log('PENDING TRIPS:', pendingTrips)
     
         pendingTrips.forEach((trip) => {
-            pendingTripsWidget.innerHTML += `<div>
-                                            <h3>${trip.destinationName}</h3><br>
-                                            <p>${trip.date}</p>
-                                            <p>Party of ${trip.travelers}</p
-                                        </div>`
+            pendingGrid.innerHTML += `<div>
+                                        <h3>${trip.destinationName}</h3><br>
+                                        <p>${trip.date}</p>
+                                        <p>Party of ${trip.travelers}</p
+                                    </div>`
         })
 
     } else {
-        pendingTripsWidget.innerHTML += `<h3>You have no pending trips at this time</h3>`
+        noPendingTrips.classList.remove('hidden')
     }
 }
 

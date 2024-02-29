@@ -11,18 +11,25 @@
 </header>
 <body>
   <div id="welcome-div">
-    <p>Welcome to Travel Tracker,</p>
+    <p class="pink">Welcome to Travel Tracker,</p>
     <h1 id="name">Traveler Name</h1>
-    <p>your next travel destination awaits you</p>
+    <p class="pink">your next travel destination awaits you</p>
   </div>
   <div id="dashboard">
     <div class="dashboard-widget" id="past-trips">PAST
+      <div class="past-grid grid-container"></div>
       <div class="no-past-trips hidden">
         <h3>You haven't taken any trips with us yet!</h3>
         <button>Book now!</button>
       </div>
     </div>
-    <div class="dashboard-widget" id="pending-trips">PENDING</div>
+    <div class="dashboard-widget" id="pending-trips">PENDING
+      <div class="pending-grid grid-container"></div>
+      <div class="no-pending-trips hidden">
+        <h3>You don't have any trips on the books!</h3>
+        <button>Book now!</button>
+      </div>
+    </div>
   </div>
   <div id="bottom-div">BOTTOM</div>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
