@@ -44,6 +44,14 @@ body {
   width: 100%;
   border-radius: 10px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trip-image {
+  width: 50%;
+  border-radius: 50%;
 }
 
 .no-pending-trips, .no-past-trips {

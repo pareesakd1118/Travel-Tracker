@@ -48,12 +48,16 @@ function displayPastTrips(id, {trips}, {destinations}) {
             trip.destinationName = destinations.find(destination => {
                 return destination.id === trip.destinationID
             }).destination
+            trip.image = destinations.find(destination => {
+                return destination.id === trip.destinationID
+            }).image
         })
         console.log('PAST TRIPS:', pastTrips)
     
         pastTrips.forEach((trip) => {
             pastGrid.innerHTML += `<div class="individual-trips">
-                                        <h3>${trip.destinationName}</h3><br>
+                                        <h3>${trip.destinationName}</h3>
+                                        <img class="trip-image" src=${trip.image} alt="picture of ${trip.destinationName}"
                                         <p>${trip.date}</p>
                                         <p>Party of ${trip.travelers}</p
                                     </div>`
@@ -73,12 +77,16 @@ function displayPendingTrips(id, {trips}, {destinations}) {
             trip.destinationName = destinations.find(destination => {
                 return destination.id === trip.destinationID
             }).destination
+            trip.image = destinations.find(destination => {
+                return destination.id === trip.destinationID
+            }).image
         })
         console.log('PENDING TRIPS:', pendingTrips)
     
         pendingTrips.forEach((trip) => {
             pendingGrid.innerHTML += `<div>
-                                        <h3>${trip.destinationName}</h3><br>
+                                        <h3>${trip.destinationName}</h3>
+        
                                         <p>${trip.date}</p>
                                         <p>Party of ${trip.travelers}</p
                                     </div>`
