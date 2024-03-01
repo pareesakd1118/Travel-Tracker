@@ -33,6 +33,7 @@ function renderDom() {
         displayPastTrips(id, trips, destinations)
         displayPendingTrips(id, trips, destinations)
         displayTotalSpent(id, trips, destinations)
+        
     })
 }
 
