@@ -42,10 +42,6 @@ costButton.addEventListener("click", function(event) {
     fetchData(currentURL)
     .then(([userInfo, trips, destinations]) => {
         costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
-        // destinationField.value = "";
-        // dateField.value = "";
-        // travelersField.value = "";
-        // durationField.value = "";
     })
 })
 
@@ -72,6 +68,12 @@ function displayForm() {
         bookNowButton.innerText = "Back Home" 
     } else {
         bookNowButton.innerText = "Book Now!"
+        destinationField.value = "";
+        dateField.value = "";
+        travelersField.value = "";
+        durationField.value = "";
+        costEstimate.innerText = "";
+        submitBookingButton.classList.add("hidden")
     }
 }
 
