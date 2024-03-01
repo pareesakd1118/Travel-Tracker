@@ -1,6 +1,6 @@
 // IMPORTS
 import { fetchData } from './apiCalls';
-
+import { calculateTotalSpent } from './costs';
 
 // QUERY SELECTORS 
 let welcome = document.querySelector("#welcome-div")
@@ -11,6 +11,8 @@ let noPastTrips = document.querySelector(".no-past-trips")
 let noPendingTrips = document.querySelector(".no-pending-trips")
 let pastGrid = document.querySelector(".past-grid")
 let pendingGrid = document.querySelector(".pending-grid")
+let totalSpent = document.querySelector("#total-spent")
+
 
 // GLOBAL VARIABLES 
 let currentUserID = "3"
@@ -29,6 +31,7 @@ function renderDom() {
         displayName(userInfo)
         displayPastTrips(id, trips, destinations)
         displayPendingTrips(id, trips, destinations)
+        displayTotalSpent(id, trips, destinations)
     })
 }
 
@@ -36,6 +39,10 @@ renderDom()
 
 function displayName({name}) {
     domName.innerText = name
+}
+
+function displayTotalSpent(id, {trips}, {destinations}) {
+    totalSpent.innerText = `You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with TravelTracker. Users save an average of 18% when booking with TravelTracker`
 }
 
 function displayPastTrips(id, {trips}, {destinations}) {
