@@ -80,8 +80,10 @@
       <label for="email">Number of Days</label>
       <input type="number" placeholder="Enter Number" id="duration-field" min="1" max="1000" step="1" required />
     </div>
-    <p id="cost-estimate"></p>
+    =
     <button id="see-cost-button">See Cost Estimate</button>
+    <p id="cost-estimate"></p>
+    <button id="submit-booking-button" class="hidden">Submit Booking Request</button>
   </form>
   <body>
     <div class="container">
@@ -107,7 +109,7 @@
         </div>
       </div>
     </div>  
-    <div id="bottom-div">BOTTOM</div>
+    <!-- <div id="bottom-div">BOTTOM</div> -->
     <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
     <script src="bundle.js"></script>
   </body>

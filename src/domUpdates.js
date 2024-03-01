@@ -24,6 +24,8 @@ let destinationField = document.querySelector("#destination-field")
 let dateField = document.querySelector("#date-field")
 let travelersField = document.querySelector("#travelers-field")
 let durationField = document.querySelector("#duration-field")
+let submitBookingButton = document.querySelector("#submit-booking-button")
+
 
 // GLOBAL VARIABLES 
 let currentUserID = "23"
@@ -36,16 +38,15 @@ pastBookButton.addEventListener("click", displayForm)
 pendingBookButton.addEventListener("click", displayForm)
 costButton.addEventListener("click", function(event) {
     event.preventDefault(); 
-    if (costButton.innerText === "See Cost Estimate") {
-        fetchData(currentURL)
-        .then(([userInfo, trips, destinations]) => {
-            console.log("destinationField.value:", destinationField.value)
-            console.log("durationField.value:", typeof durationField.value)
-            console.log("travelersField.value:", typeof travelersField.value)
-            costEstimate.innerText = `The estimated cost of this trip is $${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)}, including a 10% agent's fee. Submit booking request to agent below.`
-        })
-   
-    }
+    submitBookingButton.classList.remove("hidden")
+    fetchData(currentURL)
+    .then(([userInfo, trips, destinations]) => {
+        costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
+        // destinationField.value = "";
+        // dateField.value = "";
+        // travelersField.value = "";
+        // durationField.value = "";
+    })
 })
 
 // DOM UPDATE FUNCTIONS
