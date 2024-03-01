@@ -1,6 +1,6 @@
 // IMPORTS
 import { fetchData } from './apiCalls';
-import { calculateTotalSpent } from './costs';
+import { calculateTotalSpent, calculateTripCost } from './costs';
 
 // QUERY SELECTORS 
 let container = document.querySelector(".container")
@@ -19,9 +19,14 @@ let bookingForm = document.querySelector(".form")
 let pastBookButton = document.querySelector("#past-book-button")
 let pendingBookButton = document.querySelector("#pending-book-button")
 let costEstimate = document.querySelector("#cost-estimate")
+let costButton = document.querySelector("#see-cost-button")
+let destinationField = document.querySelector("#destination-field")
+let dateField = document.querySelector("#date-field")
+let travelersField = document.querySelector("#travelers-field")
+let durationField = document.querySelector("#duration-field")
 
 // GLOBAL VARIABLES 
-let currentUserID = "3"
+let currentUserID = "23"
 let currentURL = "http://localhost:3001/api/v1/travelers/" + currentUserID
 
 // EVENT LISTENERS
@@ -29,6 +34,19 @@ window.addEventListener("load", renderDom)
 bookNowButton.addEventListener("click", displayForm)
 pastBookButton.addEventListener("click", displayForm)
 pendingBookButton.addEventListener("click", displayForm)
+costButton.addEventListener("click", function(event) {
+    event.preventDefault(); 
+    if (costButton.innerText === "See Cost Estimate") {
+        fetchData(currentURL)
+        .then(([userInfo, trips, destinations]) => {
+            console.log("destinationField.value:", destinationField.value)
+            console.log("durationField.value:", typeof durationField.value)
+            console.log("travelersField.value:", typeof travelersField.value)
+            costEstimate.innerText = `The estimated cost of this trip is $${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)}, including a 10% agent's fee. Submit booking request to agent below.`
+        })
+   
+    }
+})
 
 // DOM UPDATE FUNCTIONS
 function renderDom() {
