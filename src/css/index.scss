@@ -9,66 +9,70 @@ select, input {
   color: black;
 }
 
-  #turing-logo {
-    height: 50px;
-  }
-  
-  body {
-    background: url('../images/shark-fin-cove.jpg');
-    margin: 0;
-  }
-  
-  #welcome-div {
-    p {
-        color: $main-accent-color;
-      }
-  }
+#turing-logo {
+  height: 50px;
+}
 
-  
-  #dashboard {
-    display: flex;
-    justify-content: space-evenly;
-  }
-  
-  .dashboard-widget {
-    width: 40vw;
-    height: 50vh;
-    background-color: $main-accent-color;
-    border-radius: 10px;
-    @include flexColumn();
-    overflow-y: scroll;
-  }
-  
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 5%; 
-    column-gap: 15%; 
-    width: 80%;
-  }
-  
-  .individual-trips {
-    background-color: $tertiary-accent-color;
-    width: 100%;
-    border-radius: 10px;
-    text-align: center;
-    @include flexColumn();
-  }
-  
-  .trip-image {
-    width: 50%;
-    border-radius: 50%;
-  }
-  
-  .no-pending-trips, .no-past-trips {
-    @include flexColumn();
-  }
-  
-  #bottom-div {
-    background-color: $secondary-accent-color;
-    height: 30vh;
-  }
-  
-  .hidden {
-    display: none;
-  }
+.book-now-button {
+  background-color: $main-accent-color;
+}
+
+body {
+  background: url('../images/shark-fin-cove.jpg');
+  margin: 0;
+}
+
+#welcome-div {
+  p {
+      color: $main-accent-color;
+    }
+}
+
+
+#dashboard {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.dashboard-widget {
+  width: 40vw;
+  height: 50vh;
+  background-color: $main-accent-color;
+  border-radius: 10px;
+  @include flexColumn();
+  overflow-y: scroll;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 5%; 
+  column-gap: 15%; 
+  width: 80%;
+}
+
+.individual-trips {
+  background-color: $tertiary-accent-color;
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+  @include flexColumn();
+}
+
+.trip-image {
+  width: 50%;
+  border-radius: 50%;
+}
+
+.no-pending-trips, .no-past-trips {
+  @include flexColumn();
+}
+
+#bottom-div {
+  background-color: $secondary-accent-color;
+  height: 30vh;
+}
+
+.hidden {
+  display: none;
+}

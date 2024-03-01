@@ -3,6 +3,8 @@ import { fetchData } from './apiCalls';
 import { calculateTotalSpent } from './costs';
 
 // QUERY SELECTORS 
+let container = document.querySelector(".container")
+let body = document.querySelector("body")
 let welcome = document.querySelector("#welcome-div")
 let domName = document.querySelector("#name")
 let pastTripsWidget = document.querySelector("#past-trips")
@@ -12,7 +14,8 @@ let noPendingTrips = document.querySelector(".no-pending-trips")
 let pastGrid = document.querySelector(".past-grid")
 let pendingGrid = document.querySelector(".pending-grid")
 let totalSpent = document.querySelector("#total-spent")
-
+let bookNowButton = document.querySelector(".book-now-button")
+let bookingForm = document.querySelector(".form")
 
 // GLOBAL VARIABLES 
 let currentUserID = "3"
@@ -20,6 +23,16 @@ let currentURL = "http://localhost:3001/api/v1/travelers/" + currentUserID
 
 // EVENT LISTENERS
 window.addEventListener("load", renderDom())
+bookNowButton.addEventListener("click", function() {
+    container.classList.toggle("hidden")
+    bookingForm.classList.toggle("hidden")
+
+    if (bookNowButton.innerText === "Book Now!") {
+        bookNowButton.innerText = "Back Home" 
+    } else {
+        bookNowButton.innerText = "Book Now!"
+    }
+})
 
 // DOM UPDATE FUNCTIONS
 function renderDom() {
