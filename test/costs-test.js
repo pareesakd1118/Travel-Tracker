@@ -1,6 +1,6 @@
 import chai from 'chai';
 import { tripsSampleSet, costSampleSet } from '../src/data/costs-sample-data'; 
-import { calculateTotalSpent } from '../src/costs'; 
+import { calculateTotalSpent, calculateTripCost } from '../src/costs'; 
 const expect = chai.expect;
 
 describe('costs-test.js', function() { 
@@ -20,23 +20,19 @@ describe('costs-test.js', function() {
     })
   });
 
-  describe('calculate sleep hours or sleep quality average', function() {
-    it.skip('should calculate the user’s average number of hours slept or sleep quality per day', function() {
-      const user1HoursAvg = calculateAvgSleepData(1, testSleepData, 'hoursSlept');
-      const user2HoursAvg = calculateAvgSleepData(2, testSleepData, 'hoursSlept');
-      const user1QualityAvg = calculateAvgSleepData(1, testSleepData, 'sleepQuality');
-      const user2QualityAvg = calculateAvgSleepData(2, testSleepData, 'sleepQuality');
+  describe('calculate cost of trip', function() {
+    it('should calculate the total cost of a described trip', function() {
+      const trip1Cost = calculateTripCost(49, 7, 2, costSampleSet);
+      const trip2Cost = calculateTripCost(3, 5, 4, costSampleSet);
 
-      expect(user1HoursAvg).to.equal('7.03');
-      expect(user2HoursAvg).to.equal('8.34');
-      expect(user1QualityAvg).to.equal('3.53');
-      expect(user2QualityAvg).to.equal('3.01');
+      expect(trip1Cost).to.equal(2530);
+      expect(trip2Cost).to.equal(6050);
     });
 
-    it.skip('should return a message if the user is new', function(){
-      const user3Avg = calculateAvgSleepData(3, testSleepData, 'hoursSlept');
+    it('should return a message if the location is not included', function(){
+      const trip3Cost = calculateTripCost(101, 8, 1, costSampleSet);
 
-      expect(user3Avg).to.equal(`You do not have any data yet.`)
+      expect(trip3Cost).to.equal(`I'm sorry! Travel Trackers does not service that destination at this time.`)
     })
   });
 })
