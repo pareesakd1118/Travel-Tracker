@@ -1,6 +1,7 @@
 ## Describe your changes
 
 ## Issue ticket number if applicable 
+This pull request closes #
 
 ## Checklist before requesting a review
 - [ ] New feature (non-breaking change which adds functionality)

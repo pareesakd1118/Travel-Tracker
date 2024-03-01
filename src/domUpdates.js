@@ -1,8 +1,10 @@
 // IMPORTS
 import { fetchData } from './apiCalls';
-import { calculateTotalSpent } from './costs';
+import { calculateTotalSpent, calculateTripCost } from './costs';
 
 // QUERY SELECTORS 
+let container = document.querySelector(".container")
+let body = document.querySelector("body")
 let welcome = document.querySelector("#welcome-div")
 let domName = document.querySelector("#name")
 let pastTripsWidget = document.querySelector("#past-trips")
@@ -12,14 +14,36 @@ let noPendingTrips = document.querySelector(".no-pending-trips")
 let pastGrid = document.querySelector(".past-grid")
 let pendingGrid = document.querySelector(".pending-grid")
 let totalSpent = document.querySelector("#total-spent")
+let bookNowButton = document.querySelector(".book-now-button")
+let bookingForm = document.querySelector(".form")
+let pastBookButton = document.querySelector("#past-book-button")
+let pendingBookButton = document.querySelector("#pending-book-button")
+let costEstimate = document.querySelector("#cost-estimate")
+let costButton = document.querySelector("#see-cost-button")
+let destinationField = document.querySelector("#destination-field")
+let dateField = document.querySelector("#date-field")
+let travelersField = document.querySelector("#travelers-field")
+let durationField = document.querySelector("#duration-field")
+let submitBookingButton = document.querySelector("#submit-booking-button")
 
 
 // GLOBAL VARIABLES 
-let currentUserID = "3"
+let currentUserID = "23"
 let currentURL = "http://localhost:3001/api/v1/travelers/" + currentUserID
 
 // EVENT LISTENERS
-window.addEventListener("load", renderDom())
+window.addEventListener("load", renderDom)
+bookNowButton.addEventListener("click", displayForm)
+pastBookButton.addEventListener("click", displayForm)
+pendingBookButton.addEventListener("click", displayForm)
+costButton.addEventListener("click", function(event) {
+    event.preventDefault(); 
+    submitBookingButton.classList.remove("hidden")
+    fetchData(currentURL)
+    .then(([userInfo, trips, destinations]) => {
+        costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
+    })
+})
 
 // DOM UPDATE FUNCTIONS
 function renderDom() {
@@ -33,8 +57,24 @@ function renderDom() {
         displayPastTrips(id, trips, destinations)
         displayPendingTrips(id, trips, destinations)
         displayTotalSpent(id, trips, destinations)
-        
     })
+}
+
+function displayForm() {
+    container.classList.toggle("hidden")
+    bookingForm.classList.toggle("hidden")
+
+    if (bookNowButton.innerText === "Book Now!") {
+        bookNowButton.innerText = "Back Home" 
+    } else {
+        bookNowButton.innerText = "Book Now!"
+        destinationField.value = "";
+        dateField.value = "";
+        travelersField.value = "";
+        durationField.value = "";
+        costEstimate.innerText = "";
+        submitBookingButton.classList.add("hidden")
+    }
 }
 
 // As a traveler:
