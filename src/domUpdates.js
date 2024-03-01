@@ -16,23 +16,19 @@ let pendingGrid = document.querySelector(".pending-grid")
 let totalSpent = document.querySelector("#total-spent")
 let bookNowButton = document.querySelector(".book-now-button")
 let bookingForm = document.querySelector(".form")
+let pastBookButton = document.querySelector("#past-book-button")
+let pendingBookButton = document.querySelector("#pending-book-button")
+let costEstimate = document.querySelector("#cost-estimate")
 
 // GLOBAL VARIABLES 
 let currentUserID = "3"
 let currentURL = "http://localhost:3001/api/v1/travelers/" + currentUserID
 
 // EVENT LISTENERS
-window.addEventListener("load", renderDom())
-bookNowButton.addEventListener("click", function() {
-    container.classList.toggle("hidden")
-    bookingForm.classList.toggle("hidden")
-
-    if (bookNowButton.innerText === "Book Now!") {
-        bookNowButton.innerText = "Back Home" 
-    } else {
-        bookNowButton.innerText = "Book Now!"
-    }
-})
+window.addEventListener("load", renderDom)
+bookNowButton.addEventListener("click", displayForm)
+pastBookButton.addEventListener("click", displayForm)
+pendingBookButton.addEventListener("click", displayForm)
 
 // DOM UPDATE FUNCTIONS
 function renderDom() {
@@ -46,8 +42,18 @@ function renderDom() {
         displayPastTrips(id, trips, destinations)
         displayPendingTrips(id, trips, destinations)
         displayTotalSpent(id, trips, destinations)
-        
     })
+}
+
+function displayForm() {
+    container.classList.toggle("hidden")
+    bookingForm.classList.toggle("hidden")
+
+    if (bookNowButton.innerText === "Book Now!") {
+        bookNowButton.innerText = "Back Home" 
+    } else {
+        bookNowButton.innerText = "Book Now!"
+    }
 }
 
 // As a traveler:

@@ -4,6 +4,10 @@
 * {
     color: $secondary-accent-color;
   }
+
+header {
+  display: flex;
+}
   
 select, input {
   color: black;
@@ -57,6 +61,7 @@ body {
   border-radius: 10px;
   text-align: center;
   @include flexColumn();
+  box-shadow: 5px 5px 10px 0 #000;
 }
 
 .trip-image {
