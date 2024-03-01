@@ -1,5 +1,5 @@
 // IMPORTS
-import { fetchData } from './apiCalls';
+import { fetchData, postData } from './apiCalls';
 import { calculateTotalSpent, calculateTripCost } from './costs';
 
 // QUERY SELECTORS 
@@ -30,6 +30,9 @@ let submitBookingButton = document.querySelector("#submit-booking-button")
 // GLOBAL VARIABLES 
 let currentUserID = "23"
 let currentURL = "http://localhost:3001/api/v1/travelers/" + currentUserID
+let postURL = "http://localhost:3001/api/v1/trips"
+let tripID = 203 
+ 
 
 // EVENT LISTENERS
 window.addEventListener("load", renderDom)
@@ -40,6 +43,20 @@ costButton.addEventListener("click", function(event) {
     event.preventDefault(); 
     displayCost()
 })
+submitBookingButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    tripID += 1
+    console.log(tripID)
+    postData(postURL, tripID, currentUserID, destinationField.value, travelersField.value, dateField.value, durationField.value)
+    .then(data => {
+        (console.log("we made it here"))
+        renderDom()
+        displayForm()
+    })   
+})
+
+
+// ostData(url, number, id, destinationID, numTravelers, date, numDays)
 
 // DOM UPDATE FUNCTIONS
 function renderDom() {
@@ -116,7 +133,6 @@ function displayPastTrips(id, {trips}, {destinations}) {
                 return destination.id === trip.destinationID
             }).image
         })
-        console.log('PAST TRIPS:', pastTrips)
     
         pastTrips.forEach((trip) => {
             pastGrid.innerHTML += `<div class="individual-trips">
