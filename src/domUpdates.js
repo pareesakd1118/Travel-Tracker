@@ -18,7 +18,8 @@ let totalSpent = document.querySelector("#total-spent")
 let currentUserID = "3"
 let currentURL = "http://localhost:3001/api/v1/travelers/" + currentUserID
 
-
+// EVENT LISTENERS
+window.addEventListener("load", renderDom())
 
 // DOM UPDATE FUNCTIONS
 function renderDom() {
@@ -35,7 +36,7 @@ function renderDom() {
     })
 }
 
-renderDom()
+
 
 function displayName({name}) {
     domName.innerText = name
