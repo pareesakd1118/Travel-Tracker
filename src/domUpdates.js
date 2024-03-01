@@ -43,6 +43,7 @@ costButton.addEventListener("click", function(event) {
 
 // DOM UPDATE FUNCTIONS
 function renderDom() {
+    destinationField.value = ""
     fetchData(currentURL)
     .then(([userInfo, trips, destinations]) => {
         console.log("userInfo:", userInfo)
@@ -93,7 +94,12 @@ function displayName({name}) {
 }
 
 function displayTotalSpent(id, {trips}, {destinations}) {
-    totalSpent.innerText = `You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with TravelTracker. Users save an average of 18% when booking with TravelTracker`
+    let total = calculateTotalSpent(id, {trips}, {destinations})
+    if (typeof total === "number") {
+        totalSpent.innerText = `You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with TravelTracker. Users save an average of 18% when booking with TravelTracker`
+    } else {
+        totalSpent.innerText = calculateTotalSpent(id, {trips}, {destinations})
+    }
 }
 
 function displayPastTrips(id, {trips}, {destinations}) {

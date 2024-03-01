@@ -1,7 +1,7 @@
 function calculateTotalSpent(id, {trips}, {destinations}) {
     let total = 0;
     const array = trips.filter((trip) => {
-        return trip.userID === id && trip.status === "approved";
+        return trip.userID === id && trip.status === "approved" && trip.date.includes("2022");
     });
 
     if (array.length) {
@@ -15,7 +15,7 @@ function calculateTotalSpent(id, {trips}, {destinations}) {
     
         return total * 1.1;
     } else {
-        return `You haven't taken any trips with us yet!`;
+        return `You haven't taken any trips with us yet this past year!`;
     } 
 }
 
