@@ -3,7 +3,6 @@ import { tripsSampleSet, costSampleSet } from '../src/data/costs-sample-data';
 import { calculateTotalSpent } from '../src/costs'; 
 const expect = chai.expect;
 
-// Total amount I have spent on trips this year. This should be calculated from the trips data and include a travel agent’s 10% fee
 describe('costs-test.js', function() { 
   describe('calculate total amount user has spent', function() {
     it('should calculate the user’s total amount spent, including 10% agents fee', function() {
@@ -20,6 +19,7 @@ describe('costs-test.js', function() {
       expect(user3TotalSpent).to.equal(`You haven't taken any trips with us yet!`)
     })
   });
+
   describe('calculate sleep hours or sleep quality average', function() {
     it.skip('should calculate the user’s average number of hours slept or sleep quality per day', function() {
       const user1HoursAvg = calculateAvgSleepData(1, testSleepData, 'hoursSlept');
