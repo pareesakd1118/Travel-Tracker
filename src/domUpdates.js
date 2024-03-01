@@ -38,11 +38,7 @@ pastBookButton.addEventListener("click", displayForm)
 pendingBookButton.addEventListener("click", displayForm)
 costButton.addEventListener("click", function(event) {
     event.preventDefault(); 
-    submitBookingButton.classList.remove("hidden")
-    fetchData(currentURL)
-    .then(([userInfo, trips, destinations]) => {
-        costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
-    })
+    displayCost()
 })
 
 // DOM UPDATE FUNCTIONS
@@ -75,6 +71,14 @@ function displayForm() {
         costEstimate.innerText = "";
         submitBookingButton.classList.add("hidden")
     }
+}
+
+function displayCost() {
+    submitBookingButton.classList.remove("hidden")
+    fetchData(currentURL)
+    .then(([userInfo, trips, destinations]) => {
+        costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
+    }) 
 }
 
 // As a traveler:
