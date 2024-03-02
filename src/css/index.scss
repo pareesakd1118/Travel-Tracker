@@ -32,10 +32,27 @@ form {
   height: 70%;
   @include flexColumn();
   justify-content: space-between;
+  background-color: $main-accent-color;
+}
+
+.booking-form {
+  width: 50vw;
+  height: 30vh;
+  border-radius: 10px;
+  position: absolute;
+  left: 25%;
+}
+
+#see-cost-button {
+  background-color: $tertiary-accent-color;
 }
 
 header {
   display: flex;
+  justify-content: space-between;
+  margin-left: 3%;
+  margin-right: 3%;
+  padding-top: .75%;
 }
   
 select, input {
@@ -46,16 +63,20 @@ select, input {
   height: 50px;
 }
 
-.book-now-button {
-  background-color: $main-accent-color;
-}
-
 body {
   background: url('../images/shark-fin-cove.jpg');
   margin: 0;
 }
 
 #welcome-div {
+  background-color: $secondary-accent-color;
+  width: 30%;
+  height: 20vh;
+  border-radius: 10px;
+  position: absolute;
+  left: 5%;
+  top: 10%;
+
   p {
       color: $main-accent-color;
     }
@@ -131,6 +152,12 @@ button {
   border-radius: 5px;
   height: 25px;
   width: 100px;
+}
+
+.book-now-button {
+  background-color: $main-accent-color;
+  height: 50px;
+  width: 130px;
 }
 
 .hidden {

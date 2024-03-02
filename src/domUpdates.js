@@ -20,7 +20,7 @@ const pastGrid = document.querySelector(".past-grid")
 const pendingGrid = document.querySelector(".pending-grid")
 const totalSpent = document.querySelector("#total-spent")
 const bookNowButton = document.querySelector(".book-now-button")
-const bookingForm = document.querySelector(".form")
+const bookingForm = document.querySelector(".booking-form")
 const pastBookButton = document.querySelector("#past-book-button")
 const pendingBookButton = document.querySelector("#pending-book-button")
 const costEstimate = document.querySelector("#cost-estimate")
@@ -107,10 +107,10 @@ function displayForm() {
     container.classList.toggle("hidden")
     bookingForm.classList.toggle("hidden")
 
-    if (bookNowButton.innerText === "Book Now!") {
+    if (bookNowButton.innerText === "Book Your Next Trip Now!") {
         bookNowButton.innerText = "Back Home" 
     } else {
-        bookNowButton.innerText = "Book Now!"
+        bookNowButton.innerText = "Book Your Next Trip Now!"
         destinationField.value = "";
         dateField.value = "";
         travelersField.value = "";
@@ -142,7 +142,7 @@ function displayName({name}) {
 function displayTotalSpent(id, {trips}, {destinations}) {
     let total = calculateTotalSpent(id, {trips}, {destinations})
     if (typeof total === "number") {
-        totalSpent.innerText = `You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with TravelTracker this year. Users save an average of 18% when booking with TravelTracker`
+        totalSpent.innerText = `You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with TravelTracker this year. Users save an average of 18% when booking with TravelTracker.`
     } else {
         totalSpent.innerText = calculateTotalSpent(id, {trips}, {destinations})
     }
