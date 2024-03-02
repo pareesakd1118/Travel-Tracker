@@ -85,7 +85,8 @@ function detectLogin(event) {
     let secondHalf = array.slice(8).join("")
 
     if (passwordField.value === "traveler" && firstHalf === "traveler" && parseInt(secondHalf) > 0 && parseInt(secondHalf) <= 50) {
-        loginPage.classList.add("hidden")
+        // loginPage.classList.add("hidden")
+        loginPage.style.display = "none"
         header.classList.remove("hidden")
         container.classList.remove("hidden")
         currentUserID = secondHalf
