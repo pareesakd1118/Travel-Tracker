@@ -93,15 +93,15 @@
       <form id="login-form">
         <div class="form-example">
           <label for="email">Username</label>
-          <input type="text" placeholder="Enter Username" id="username-field" min="1" required />
+          <input type="text" placeholder="Enter Username" id="username-field" required />
         </div>
         <div class="form-example">
           <label for="email">Password</label>
           <input type="text" placeholder="Enter Password" id="password-field" required />
         </div>
         <button id="login-button">Login</button>
-        <p id="incorrect-login"></p>
       </form>
+      <p id="incorrect-login"></p>
     </div>
     <div class="container hidden">
       <div id="welcome-div">
@@ -110,7 +110,7 @@
         <p class="pink">your next travel destination awaits you</p>
       </div>
       <div id="dashboard">
-        <div class="dashboard-widget" id="past-trips">
+        <div class="dashboard-widget past" id="past-trips">
           <h2>PAST TRIPS</h2>
           <div class="past-grid grid-container"></div>
           <div class="no-past-trips hidden">
@@ -118,7 +118,7 @@
             <button id="past-book-button">Book now!</button>
           </div>
         </div>
-        <div class="dashboard-widget" id="pending-trips">
+        <div class="dashboard-widget pending" id="pending-trips">
           <h2>PENDING TRIPS</h2>
           <div class="pending-grid grid-container"></div>
           <div class="no-pending-trips hidden">
@@ -128,7 +128,7 @@
         </div>
       </div>
     </div>  
-    <!-- <div id="bottom-div">BOTTOM</div> -->
+    <div class="hidden" id="bottom-div"></div>
     <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
     <script src="bundle.js"></script>
   </body>
