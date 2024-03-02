@@ -5,6 +5,13 @@
     color: $secondary-accent-color;
   }
 
+#login-page {
+  background-color: $main-accent-color;
+  height: 30vh;
+  width: 100%;
+  @include flexColumn();
+}
+
 header {
   display: flex;
 }
