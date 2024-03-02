@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webpack Starter Kit</title>
   </head>
-  <header>
+  <header class="hidden">
     <img id="turing-logo" src="./images/turing-logo.png" alt="turing logo">
     <p id="total-spent"></p>
     <button class="book-now-button">Book Now!</button>
@@ -79,13 +79,28 @@
       <label for="email">Number of Days</label>
       <input type="number" placeholder="Enter Number" id="duration-field" min="1" max="1000" step="1" required />
     </div>
-    =
     <button id="see-cost-button">See Cost Estimate</button>
     <p id="cost-estimate"></p>
     <button id="submit-booking-button" class="hidden">Submit Booking Request</button>
   </form>
   <body>
-    <div class="container">
+    <div id="login-page">
+      <h2>Welcome to Travel Tracker</h2>
+      <p>Please log in below</p>
+      <form id="login-form">
+        <div class="form-example">
+          <label for="email">Username</label>
+          <input type="text" placeholder="Enter Username" id="username-field" min="1" required />
+        </div>
+        <div class="form-example">
+          <label for="email">Password</label>
+          <input type="text" placeholder="Enter Password" id="password-field" required />
+        </div>
+        <button id="login-button">Login</button>
+        <p id="incorrect-login"></p>
+      </form>
+    </div>
+    <div class="container hidden">
       <div id="welcome-div">
         <p class="pink">Welcome to Travel Tracker,</p>
         <h1 id="name">Traveler Name</h1>
