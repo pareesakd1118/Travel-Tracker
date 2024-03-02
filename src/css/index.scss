@@ -3,6 +3,10 @@
 
 * {
     color: $secondary-accent-color;
+    font-family: "Inter", sans-serif;
+    // font-optical-sizing: auto;
+    // font-weight: <weight>;
+    // font-style: normal;
   }
 
 #login-page {
@@ -10,6 +14,12 @@
   height: 30vh;
   width: 100%;
   @include flexColumn();
+}
+
+form {
+  height: 70%;
+  @include flexColumn();
+  justify-content: space-between;
 }
 
 header {
@@ -38,7 +48,6 @@ body {
       color: $main-accent-color;
     }
 }
-
 
 #dashboard {
   display: flex;
@@ -80,9 +89,21 @@ body {
   @include flexColumn();
 }
 
+#pending-book-button, 
+#past-book-button,
+#login-button {
+  background-color: $tertiary-accent-color;
+  height: 20%;
+  width: 30%;
+}
+
 #bottom-div {
   background-color: $secondary-accent-color;
   height: 30vh;
+}
+
+button {
+  border-radius: 5px;
 }
 
 .hidden {
