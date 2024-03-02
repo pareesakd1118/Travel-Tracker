@@ -141,7 +141,7 @@ function displayName({name}) {
 function displayTotalSpent(id, {trips}, {destinations}) {
     let total = calculateTotalSpent(id, {trips}, {destinations})
     if (typeof total === "number") {
-        totalSpent.innerText = `You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with TravelTracker. Users save an average of 18% when booking with TravelTracker`
+        totalSpent.innerText = `You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with TravelTracker this year. Users save an average of 18% when booking with TravelTracker`
     } else {
         totalSpent.innerText = calculateTotalSpent(id, {trips}, {destinations})
     }
