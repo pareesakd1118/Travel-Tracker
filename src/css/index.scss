@@ -4,9 +4,6 @@
 * {
     color: $main-font-color;
     font-family: "Inter", sans-serif;
-    // font-optical-sizing: auto;
-    // font-weight: <weight>;
-    // font-style: normal;
   }
 
 #login-page {
@@ -21,6 +18,15 @@
   top: 15%;
   left: 41.5%;
   height: 10%;
+}
+
+#login-welcome {
+  font-size: 30px;
+}
+
+#please-login {
+  position: absolute;
+  top: 8.5%
 }
 
 #incorrect-login {
@@ -76,10 +82,21 @@ body {
   position: absolute;
   left: 5%;
   top: 10%;
+  padding-left: 3%;
+  padding-top: 1%;
 
   p {
       color: $main-accent-color;
+      font-weight: bold;
     }
+}
+
+h1 {
+  font-size: xx-large;
+}
+
+#total-spent {
+  font-weight: bold;
 }
 
 #dashboard {
@@ -152,6 +169,14 @@ button {
   border-radius: 5px;
   height: 25px;
   width: 100px;
+}
+
+.booking-form-container {
+  height: 80%;
+  width: 50%;
+  border-radius: 10px;
+  padding-top: 2%;
+  background-color: $main-accent-color;
 }
 
 .book-now-button {

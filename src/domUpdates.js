@@ -33,6 +33,7 @@ const submitBookingButton = document.querySelector("#submit-booking-button")
 const bottom = document.querySelector("#bottom-div")
 
 
+
 // GLOBAL VARIABLES 
 let currentUserID;
 let currentURL;
