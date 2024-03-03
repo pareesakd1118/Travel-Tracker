@@ -20,7 +20,7 @@ const pastGrid = document.querySelector(".past-grid")
 const pendingGrid = document.querySelector(".pending-grid")
 const totalSpent = document.querySelector("#total-spent")
 const bookNowButton = document.querySelector(".book-now-button")
-const bookingForm = document.querySelector(".form")
+const bookingForm = document.querySelector(".booking-form")
 const pastBookButton = document.querySelector("#past-book-button")
 const pendingBookButton = document.querySelector("#pending-book-button")
 const costEstimate = document.querySelector("#cost-estimate")
@@ -30,6 +30,8 @@ const dateField = document.querySelector("#date-field")
 const travelersField = document.querySelector("#travelers-field")
 const durationField = document.querySelector("#duration-field")
 const submitBookingButton = document.querySelector("#submit-booking-button")
+const bottom = document.querySelector("#bottom-div")
+
 
 
 // GLOBAL VARIABLES 
@@ -84,11 +86,11 @@ function detectLogin(event) {
     let firstHalf = array.slice(0,8).join("")
     let secondHalf = array.slice(8).join("")
 
-    if (passwordField.value === "traveler" && firstHalf === "traveler" && parseInt(secondHalf) > 0 && parseInt(secondHalf) <= 50) {
-        // loginPage.classList.add("hidden")
+    if (passwordField.value === "traveler" && firstHalf === "traveler" && parseInt(secondHalf) > 0 && parseInt(secondHalf) <= 50 && secondHalf.length <= 2) {
         loginPage.style.display = "none"
         header.classList.remove("hidden")
         container.classList.remove("hidden")
+        bottom.classList.remove("hidden")
         currentUserID = secondHalf
         currentURL = "http://localhost:3001/api/v1/travelers/" + currentUserID
         incorrectMessage.innerText = "";
@@ -106,10 +108,10 @@ function displayForm() {
     container.classList.toggle("hidden")
     bookingForm.classList.toggle("hidden")
 
-    if (bookNowButton.innerText === "Book Now!") {
+    if (bookNowButton.innerText === "Book Your Next Trip Now!") {
         bookNowButton.innerText = "Back Home" 
     } else {
-        bookNowButton.innerText = "Book Now!"
+        bookNowButton.innerText = "Book Your Next Trip Now!"
         destinationField.value = "";
         dateField.value = "";
         travelersField.value = "";
@@ -141,7 +143,7 @@ function displayName({name}) {
 function displayTotalSpent(id, {trips}, {destinations}) {
     let total = calculateTotalSpent(id, {trips}, {destinations})
     if (typeof total === "number") {
-        totalSpent.innerText = `You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with TravelTracker this year. Users save an average of 18% when booking with TravelTracker`
+        totalSpent.innerText = `You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with TravelTracker this year. Users save an average of 18% when booking with TravelTracker.`
     } else {
         totalSpent.innerText = calculateTotalSpent(id, {trips}, {destinations})
     }
