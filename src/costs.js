@@ -15,7 +15,7 @@ function calculateTotalSpent(id, {trips}, {destinations}) {
     
         return total * 1.1;
     } else {
-        return `You haven't booked any trips with us this year yet!`;
+        return `You haven't booked any trips with us this year!`;
     } 
 }
 
