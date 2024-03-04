@@ -16,7 +16,7 @@ describe('costs-test.js', function() {
     it('should return a message if the user is new', function(){
       const user3TotalSpent = calculateTotalSpent(3, tripsSampleSet, costSampleSet);
 
-      expect(user3TotalSpent).to.equal(`You haven't booked any trips with us this year yet!`)
+      expect(user3TotalSpent).to.equal(`You haven't booked any trips with us this year!`)
     })
   });
 

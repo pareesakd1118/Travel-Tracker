@@ -50,15 +50,13 @@ costButton.addEventListener("click", function(event) {
 })
 submitBookingButton.addEventListener("click", function(event) {
     event.preventDefault();
+    noPendingTrips.classList.add("hidden")
     console.log("tripID:", tripID)
     postData(tripID, currentUserID, destinationField.value, travelersField.value, dateField.value, durationField.value)
     .then(data => {
         console.log("POSTED DATA:", data)
         fetchData(currentURL)
         .then(([userInfo, trips, destinations]) => {
-            console.log("HEREEEuserInfo:", userInfo)
-            console.log("HEREEEtrips:", trips)
-            console.log("HEREEEdestinations:", destinations)
             let id = parseInt(currentUserID)
             pendingGrid.innerHTML = ""
             displayPendingTrips(id, trips, destinations)
@@ -194,7 +192,7 @@ function displayPendingTrips(id, {trips}, {destinations}) {
     const pendingTrips = trips.filter((trip) => {
         console.log("trip.userID:", trip.userID)
         console.log("id", id)
-        return trip.status === "pending" 
+        return trip.status === "pending" && parseInt(trip.userID) === id
     })
 
     if (pendingTrips.length) {
