@@ -73,31 +73,33 @@
       </div>
       <div class="form-example">
         <label for="email">Start Date </label>
-        <input type="text" placeholder="YYYY/MM/DD" id="date-field"  required />
+        <input type="text" placeholder="YYYY/MM/DD" id="date-field"  required>
       </div>
       <div class="form-example">
         <label for="name">Number of Travelers </label>
-        <input type="number" placeholder="Enter Number" id="travelers-field" min="1" max="100" step="1" required />
+        <input type="number" placeholder="Enter Number" id="travelers-field" min="1" max="100" step="1" required>
       </div>
       <div class="form-example">
         <label for="email">Number of Days</label>
-        <input type="number" placeholder="Enter Number" id="duration-field" min="1" max="1000" step="1" required />
+        <input type="number" placeholder="Enter Number" id="duration-field" min="1" max="1000" step="1" required>
       </div>
       <button id="see-cost-button">See Cost Estimate</button>
+    </form>
+    <div class="cost-estimate-div hidden">
       <p id="cost-estimate"></p>
       <button id="submit-booking-button" class="hidden">Submit Booking Request</button>
-    </form>
+    </div>
     <div id="login-page">
       <h2 id="login-welcome">Welcome to TravelTracker</h2>
       <h3 id="please-login">Please log in below</h3>
       <form id="login-form">
         <div class="form-example">
           <label for="email">Username</label>
-          <input type="text" placeholder="Enter Username" id="username-field" required />
+          <input type="text" placeholder="Enter Username" id="username-field" required>
         </div>
         <div class="form-example">
           <label for="email">Password</label>
-          <input type="text" placeholder="Enter Password" id="password-field" required />
+          <input type="text" placeholder="Enter Password" id="password-field" required>
         </div>
         <button id="login-button">Login</button>
       </form>

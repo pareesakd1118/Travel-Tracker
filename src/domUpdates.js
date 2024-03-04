@@ -23,6 +23,7 @@ const bookNowButton = document.querySelector(".book-now-button")
 const bookingForm = document.querySelector(".booking-form")
 const pastBookButton = document.querySelector("#past-book-button")
 const pendingBookButton = document.querySelector("#pending-book-button")
+const costEstimateDiv = document.querySelector(".cost-estimate-div")
 const costEstimate = document.querySelector("#cost-estimate")
 const costButton = document.querySelector("#see-cost-button")
 const destinationField = document.querySelector("#destination-field")
@@ -123,16 +124,24 @@ function displayForm() {
         travelersField.value = "";
         durationField.value = "";
         costEstimate.innerText = "";
-        submitBookingButton.classList.add("hidden")
+        costEstimateDiv.classList.add("hidden")
     }
 }
 
 function displayCost() {
-    submitBookingButton.classList.remove("hidden")
+    costEstimateDiv.classList.remove("hidden")
+
     fetchData(currentURL)
     .then(([userInfo, trips, destinations]) => {
-        costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
-    }) 
+        if (typeof calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations) === "number") {
+            costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
+            submitBookingButton.classList.remove("hidden")
+        } else if (destinationField.value === "" || durationField.value === "" || travelersField.value === "" || dateField.value === "") {
+            costEstimate.innerText = `Please fill out missing field(s).`
+        } else {
+            costEstimate.innerText = `${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)}`
+        }  
+    })
 }
 
 function displayName({name}) {
@@ -180,7 +189,6 @@ function displayPendingTrips(id, {trips}, {destinations}) {
     const pendingTrips = trips.filter((trip) => {
         return trip.status === "pending"
     })
-    console.log("pending trips:", pendingTrips)
 
     if (pendingTrips.length) {
         pendingTrips.forEach((trip) => {
@@ -200,7 +208,6 @@ function displayPendingTrips(id, {trips}, {destinations}) {
                                         <p>Party of ${trip.travelers}</p
                                     </div>`
         })
-
     } else {
         noPendingTrips.classList.remove('hidden')
     }
