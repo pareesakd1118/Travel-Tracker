@@ -10,17 +10,28 @@ function runGet(url) {
     return gets
 }
 
+// function fetchData(url) {
+//     return Promise.all(runGet(url))
+//     .then(res => {
+    
+//             return Promise.all(res.map(item => {
+//                 return item.json()
+//             })) 
+
+//     }) 
+// }
+
 function fetchData(url) {
     return Promise.all(runGet(url))
-    .then(res => {
-        if (res.ok) {
-            return Promise.all(res.map(item => {
-                return item.json()
-            })) 
-        } else {
-
-        }
-    }) 
+        .then(res => {
+            const allResponsesOk = res.every(item => item.ok);
+            
+            if (allResponsesOk) {
+                return Promise.all(res.map(item => item.json()));
+            } else {
+                console.log("uh ohhhhhhh")
+            }
+        }) 
 }
 
 function postData(number, id, destinationID, numTravelers, date, numDays) {

@@ -73,6 +73,8 @@ closeErrorButton.addEventListener("click", function() {
 })
 
 // DOM UPDATE FUNCTIONS
+errorMessage.style.display = "none"
+
 function renderDom() {
     destinationField.value = ""
     fetchData(currentURL)
@@ -223,7 +225,7 @@ function displayErrorMessage(error) {
     bookingForm.classList.add("hidden")
     header.classList.add("hidden")
     errorMessage.innerText = `${error}. Please check that your server is running properly.`
-    errorMessage.classList.remove("hidden")
+    errorMessage.style.display = "visible"
 }
 
 
