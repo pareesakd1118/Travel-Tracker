@@ -1,6 +1,6 @@
 import chai from 'chai';
 import { tripsSampleSet, costSampleSet } from '../src/data/costs-sample-data'; 
-import { calculateTotalSpent, calculateTripCost, reformatDate } from '../src/costs'; 
+import { calculateTotalSpent, calculateTripCost, reformatDate, reformatDestination } from '../src/costs'; 
 const expect = chai.expect;
 
 describe('costs-test.js', function() { 
@@ -43,6 +43,28 @@ describe('costs-test.js', function() {
 
       expect(date1).to.equal("01/15/2022");
       expect(date2).to.equal("11/03/2023");
+    });
+
+    it('should not reformat a date that is formatted with month first', function() {
+      const date1 = reformatDate("01/15/2020");
+
+      expect(date1).to.equal("01/15/2020");
+    });
+  });
+
+  describe('reformat a destination', function() {
+    it('should reformat a destination so the city name is on one line and the country name is on the next line', function() {
+      const destination1 = reformatDestination("Rome, Italy");
+      const destination2 = reformatDestination("Madrid, Spain");
+
+      expect(destination1).to.equal("Rome,<br> Italy");
+      expect(destination2).to.equal("Madrid,<br> Spain");
+    });
+
+    it('should not reformat destination if no comma present', function() {
+      const destination1 = reformatDestination("Tehran");
+
+      expect(destination1).to.equal("Tehran");
     });
   });
 })

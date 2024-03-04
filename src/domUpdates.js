@@ -1,6 +1,6 @@
 // IMPORTS
 import { fetchData, postData } from './apiCalls';
-import { calculateTotalSpent, calculateTripCost, reformatDate } from './costs';
+import { calculateTotalSpent, calculateTripCost, reformatDate, reformatDestination } from './costs';
 import { imageURLs } from './images';
 
 // QUERY SELECTORS 
@@ -176,7 +176,7 @@ function displayPastTrips(id, {trips}, {destinations}) {
     
         pastTrips.forEach((trip) => {
             pastGrid.innerHTML += `<div class="individual-trips">
-                                        <h3>${trip.destinationName}</h3>
+                                        <h3>${reformatDestination(trip.destinationName)}</h3>
                                         <img class="trip-image" src=${trip.image} alt="picture of ${trip.destinationName}">
                                         <p>${reformatDate(trip.date)}</p>
                                         <p>Party of ${trip.travelers}</p
@@ -204,7 +204,7 @@ function displayPendingTrips(id, {trips}, {destinations}) {
     
         pendingTrips.forEach((trip) => {
             pendingGrid.innerHTML += `<div class="individual-trips">
-                                        <h3>${trip.destinationName}</h3>
+                                        <h3>${reformatDestination(trip.destinationName)}</h3>
                                         <img class="trip-image" src=${trip.image} alt="picture of ${trip.destinationName}">
                                         <p>${reformatDate(trip.date)}</p>
                                         <p>Party of ${trip.travelers}</p

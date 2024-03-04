@@ -37,12 +37,27 @@ function reformatDate(date) {
     const secondHalf = array.slice(0, 4).join("")
     const reformattedDate = firstHalf + "/" + secondHalf
 
-    return reformattedDate
+    if (array[4] === "/") {
+        return reformattedDate
+    } else {
+        return date
+    }
 }
 
+function reformatDestination(destination) {
+    const array = destination.split(",")
+    console.log("array:", array)
+
+    if (array.length > 1) {
+        return `${array[0]},<br>${array[1]}`
+    } else {
+        return destination 
+    }
+}
 
 export {
     calculateTotalSpent,
     calculateTripCost,
-    reformatDate
+    reformatDate,
+    reformatDestination
  };
