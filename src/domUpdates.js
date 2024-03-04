@@ -225,7 +225,7 @@ function displayErrorMessage(error) {
     header.classList.add("hidden")
     errorMessage.innerText = `${error}. Please check that your server is running properly.`
     errorMessage.classList.remove("hidden")
-    console.log("DISPLAY ERROR INVOKED")
 }
 
+export { displayErrorMessage };
 

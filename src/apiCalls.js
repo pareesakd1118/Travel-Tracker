@@ -1,4 +1,4 @@
-//fetch one users data, url will be the main url + current user 
+import { displayErrorMessage } from './domUpdates';
 
 function runGet(url) {
     let gets = [
@@ -18,7 +18,7 @@ function fetchData(url) {
             if (allResponsesOk) {
                 return Promise.all(res.map(item => item.json()));
             } else {
-                console.log("uh ohhhhhhh")
+                displayErrorMessage("ERROR:")
             }
         }) 
 }
@@ -46,7 +46,7 @@ function postData(number, id, destinationID, numTravelers, date, numDays) {
         if (res.ok) {
             return res.json()
         } else {
-
+            displayErrorMessage("ERROR:")
         }
     })
 }
