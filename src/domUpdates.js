@@ -1,6 +1,6 @@
 // IMPORTS
 import { fetchData, postData } from './apiCalls';
-import { calculateTotalSpent, calculateTripCost } from './costs';
+import { calculateTotalSpent, calculateTripCost, reformatDate } from './costs';
 import { imageURLs } from './images';
 
 // QUERY SELECTORS 
@@ -130,13 +130,15 @@ function displayCost() {
 
     fetchData(currentURL)
     .then(([userInfo, trips, destinations]) => {
-        if (typeof calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations) === "number") {
+        if (calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations) > 0) {
             costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
             submitBookingButton.classList.remove("hidden")
         } else if (destinationField.value === "" || durationField.value === "" || travelersField.value === "" || dateField.value === "") {
             costEstimate.innerText = `Please fill out missing field(s).`
+            submitBookingButton.classList.add("hidden")
         } else {
             costEstimate.innerText = `${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)}`
+            submitBookingButton.classList.add("hidden")
         }  
     })
     .catch((err) => {
@@ -151,9 +153,9 @@ function displayName({name}) {
 function displayTotalSpent(id, {trips}, {destinations}) {
     let total = calculateTotalSpent(id, {trips}, {destinations})
     if (typeof total === "number") {
-        totalSpent.innerText = `You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with TravelTracker this year. Users save an average of 18% when booking with TravelTracker.`
+        totalSpent.innerHTML = `<p>You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with <span>TravelTracker</span> this year. Users save an average of 18% when booking with <span>TravelTracker.</span></p>`
     } else {
-        totalSpent.innerText = calculateTotalSpent(id, {trips}, {destinations})
+        totalSpent.innerHTML = calculateTotalSpent(id, {trips}, {destinations})
     }
 }
 
@@ -176,7 +178,7 @@ function displayPastTrips(id, {trips}, {destinations}) {
             pastGrid.innerHTML += `<div class="individual-trips">
                                         <h3>${trip.destinationName}</h3>
                                         <img class="trip-image" src=${trip.image} alt="picture of ${trip.destinationName}">
-                                        <p>${trip.date}</p>
+                                        <p>${reformatDate(trip.date)}</p>
                                         <p>Party of ${trip.travelers}</p
                                     </div>`
         })
@@ -204,7 +206,7 @@ function displayPendingTrips(id, {trips}, {destinations}) {
             pendingGrid.innerHTML += `<div class="individual-trips">
                                         <h3>${trip.destinationName}</h3>
                                         <img class="trip-image" src=${trip.image} alt="picture of ${trip.destinationName}">
-                                        <p>${trip.date}</p>
+                                        <p>${reformatDate(trip.date)}</p>
                                         <p>Party of ${trip.travelers}</p
                                     </div>`
         })
@@ -228,8 +230,7 @@ function changeBackgroundImage() {
 }
 
 changeBackgroundImage()
-setInterval(changeBackgroundImage, 10000);
-
+setInterval(changeBackgroundImage, 15000);
 
 export { displayErrorMessage };
 

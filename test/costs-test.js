@@ -1,6 +1,6 @@
 import chai from 'chai';
 import { tripsSampleSet, costSampleSet } from '../src/data/costs-sample-data'; 
-import { calculateTotalSpent, calculateTripCost } from '../src/costs'; 
+import { calculateTotalSpent, calculateTripCost, reformatDate } from '../src/costs'; 
 const expect = chai.expect;
 
 describe('costs-test.js', function() { 
@@ -16,7 +16,7 @@ describe('costs-test.js', function() {
     it('should return a message if the user is new', function(){
       const user3TotalSpent = calculateTotalSpent(3, tripsSampleSet, costSampleSet);
 
-      expect(user3TotalSpent).to.equal(`You haven't booked any trips with us this year!`)
+      expect(user3TotalSpent).to.equal(`<p>You haven't booked any trips with <span>TravelTracker</span> this year!</p>`)
     })
   });
 
@@ -32,8 +32,18 @@ describe('costs-test.js', function() {
     it('should return a message if the location is not included', function(){
       const trip3Cost = calculateTripCost(101, 8, 1, costSampleSet);
 
-      expect(trip3Cost).to.equal(`I'm sorry! Travel Trackers does not service that destination at this time.`)
+      expect(trip3Cost).to.equal(`I'm sorry! TravelTracker does not service that destination at this time.`)
     })
+  });
+
+  describe('reformat a date', function() {
+    it('should reformat a date so that year goes first', function() {
+      const date1 = reformatDate("2022/01/15");
+      const date2 = reformatDate("2023/11/03");
+
+      expect(date1).to.equal("01/15/2022");
+      expect(date2).to.equal("11/03/2023");
+    });
   });
 })
 
