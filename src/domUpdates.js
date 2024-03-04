@@ -33,8 +33,6 @@ const travelersField = document.querySelector("#travelers-field")
 const durationField = document.querySelector("#duration-field")
 const submitBookingButton = document.querySelector("#submit-booking-button")
 const bottom = document.querySelector("#bottom-div")
-const closeErrorButton = document.querySelector("#close-message-button")
-
 
 // GLOBAL VARIABLES 
 let currentUserID;
@@ -68,13 +66,8 @@ submitBookingButton.addEventListener("click", function(event) {
         displayForm()
     }) 
 })
-closeErrorButton.addEventListener("click", function() {
-    errorMessage.style.display = "none"
-})
 
 // DOM UPDATE FUNCTIONS
-errorMessage.style.display = "none"
-
 function renderDom() {
     destinationField.value = ""
     fetchData(currentURL)
@@ -225,7 +218,8 @@ function displayErrorMessage(error) {
     bookingForm.classList.add("hidden")
     header.classList.add("hidden")
     errorMessage.innerText = `${error}. Please check that your server is running properly.`
-    errorMessage.style.display = "visible"
+    errorMessage.classList.remove("hidden")
+    console.log("DISPLAY ERROR INVOKED")
 }
 
 

@@ -69,7 +69,7 @@ header {
   height: 20vh;
   background-color: $main-accent-color;
   font-size: xx-large;
-  @include flexColumn();
+  padding-left: 3%;
 
   button {
     background-color: $tertiary-accent-color;

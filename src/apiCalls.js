@@ -10,17 +10,6 @@ function runGet(url) {
     return gets
 }
 
-// function fetchData(url) {
-//     return Promise.all(runGet(url))
-//     .then(res => {
-    
-//             return Promise.all(res.map(item => {
-//                 return item.json()
-//             })) 
-
-//     }) 
-// }
-
 function fetchData(url) {
     return Promise.all(runGet(url))
         .then(res => {
