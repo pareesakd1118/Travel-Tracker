@@ -13,10 +13,14 @@ function runGet(url) {
 function fetchData(url) {
     return Promise.all(runGet(url))
     .then(res => {
-        return Promise.all(res.map(item => {
-            return item.json()
-        }))
-    })   
+        if (res.ok) {
+            return Promise.all(res.map(item => {
+                return item.json()
+            })) 
+        } else {
+
+        }
+    }) 
 }
 
 function postData(number, id, destinationID, numTravelers, date, numDays) {
@@ -38,7 +42,13 @@ function postData(number, id, destinationID, numTravelers, date, numDays) {
             "Content-Type": "application/json"
             }
     })
-    .then(res => res.json())
+    .then(res => {
+        if (res.ok) {
+            return res.json()
+        } else {
+
+        }
+    })
 }
 
 export { fetchData, postData };

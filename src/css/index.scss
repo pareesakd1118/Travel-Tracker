@@ -63,6 +63,18 @@ header {
   margin-right: 3%;
   padding-top: .75%;
 }
+
+#error-message {
+  padding-top: 5%;
+  height: 20vh;
+  background-color: $main-accent-color;
+  font-size: xx-large;
+  @include flexColumn();
+
+  button {
+    background-color: $tertiary-accent-color;
+  }
+}
   
 select, input {
   color: black;

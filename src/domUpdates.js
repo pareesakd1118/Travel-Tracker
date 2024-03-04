@@ -4,6 +4,7 @@ import { calculateTotalSpent, calculateTripCost } from './costs';
 
 // QUERY SELECTORS 
 const container = document.querySelector(".container")
+const errorMessage = document.querySelector("#error-message")
 const loginPage = document.querySelector("#login-page")
 const loginButton = document.querySelector("#login-button")
 const usernameField = document.querySelector("#username-field")
@@ -32,14 +33,13 @@ const travelersField = document.querySelector("#travelers-field")
 const durationField = document.querySelector("#duration-field")
 const submitBookingButton = document.querySelector("#submit-booking-button")
 const bottom = document.querySelector("#bottom-div")
-
+const closeErrorButton = document.querySelector("#close-message-button")
 
 
 // GLOBAL VARIABLES 
 let currentUserID;
 let currentURL;
 let tripID = Date.now() 
- 
 
 // EVENT LISTENERS
 loginButton.addEventListener("click", detectLogin)
@@ -68,8 +68,9 @@ submitBookingButton.addEventListener("click", function(event) {
         displayForm()
     }) 
 })
-
-
+closeErrorButton.addEventListener("click", function() {
+    errorMessage.style.display = "none"
+})
 
 // DOM UPDATE FUNCTIONS
 function renderDom() {
@@ -84,6 +85,9 @@ function renderDom() {
         displayPastTrips(id, trips, destinations)
         displayPendingTrips(id, trips, destinations)
         displayTotalSpent(id, trips, destinations)
+    })
+    .catch((err) => {
+        displayErrorMessage(err)
     })
 }
 
@@ -213,5 +217,13 @@ function displayPendingTrips(id, {trips}, {destinations}) {
     }
 }
 
+function displayErrorMessage(error) {
+    container.classList.add("hidden")
+    loginPage.classList.add("hidden")
+    bookingForm.classList.add("hidden")
+    header.classList.add("hidden")
+    errorMessage.innerText = `${error}. Please check that your server is running properly.`
+    errorMessage.classList.remove("hidden")
+}
 
 
