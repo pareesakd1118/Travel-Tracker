@@ -37,8 +37,7 @@ const bottom = document.querySelector("#bottom-div")
 // GLOBAL VARIABLES 
 let currentUserID;
 let currentURL;
-let postURL = "http://localhost:3001/api/v1/trips"
-let tripID = 203 
+let tripID = Date.now() 
  
 
 // EVENT LISTENERS
@@ -52,14 +51,21 @@ costButton.addEventListener("click", function(event) {
 })
 submitBookingButton.addEventListener("click", function(event) {
     event.preventDefault();
-    tripID += 1
-    console.log(tripID)
-    postData(postURL, tripID, currentUserID, destinationField.value, travelersField.value, dateField.value, durationField.value)
+    console.log("tripID:", tripID)
+    postData(tripID, currentUserID, destinationField.value, travelersField.value, dateField.value, durationField.value)
     .then(data => {
-        (console.log("we made it here"))
-        renderDom()
+        console.log("POSTED DATA:", data)
+        fetchData(currentURL)
+        .then(([userInfo, trips, destinations]) => {
+            console.log("HEREEEuserInfo:", userInfo)
+            console.log("HEREEEtrips:", trips)
+            console.log("HEREEEdestinations:", destinations)
+            let id = parseInt(currentUserID)
+            pendingGrid.innerHTML = ""
+            displayPendingTrips(id, trips, destinations)
+    })
         displayForm()
-    })   
+    }) 
 })
 
 
@@ -72,7 +78,7 @@ function renderDom() {
         console.log("userInfo:", userInfo)
         console.log("trips:", trips)
         console.log("destinations:", destinations)
-        let id = userInfo.id
+        let id = parseInt(currentUserID)
         displayName(userInfo)
         displayPastTrips(id, trips, destinations)
         displayPendingTrips(id, trips, destinations)
@@ -129,13 +135,6 @@ function displayCost() {
     }) 
 }
 
-// As a traveler:
-
-// I should be able to make a trip request:
-// I will select a date, duration, number of travelers and choose from a list of destinations
-// After making these selections, I should see an estimated cost (with a 10% travel agent fee) for the trip.
-// Once I submit the trip request, it will show on my dashboard as “pending” so that the travel agency can approve or deny it.
-
 function displayName({name}) {
     domName.innerText = name
 }
@@ -179,8 +178,9 @@ function displayPastTrips(id, {trips}, {destinations}) {
 
 function displayPendingTrips(id, {trips}, {destinations}) {
     const pendingTrips = trips.filter((trip) => {
-        return trip.userID === id && trip.status !== "approved"
+        return trip.status === "pending"
     })
+    console.log("pending trips:", pendingTrips)
 
     if (pendingTrips.length) {
         pendingTrips.forEach((trip) => {
@@ -194,9 +194,8 @@ function displayPendingTrips(id, {trips}, {destinations}) {
         console.log('PENDING TRIPS:', pendingTrips)
     
         pendingTrips.forEach((trip) => {
-            pendingGrid.innerHTML += `<div>
+            pendingGrid.innerHTML += `<div class="individual-trips">
                                         <h3>${trip.destinationName}</h3>
-        
                                         <p>${trip.date}</p>
                                         <p>Party of ${trip.travelers}</p
                                     </div>`
@@ -206,5 +205,6 @@ function displayPendingTrips(id, {trips}, {destinations}) {
         noPendingTrips.classList.remove('hidden')
     }
 }
+
 
 

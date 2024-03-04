@@ -19,18 +19,21 @@ function fetchData(url) {
     })   
 }
 
-function postData(url, number, id, destinationID, numTravelers, date, numDays) {
-    return fetch(url, {
+function postData(number, id, destinationID, numTravelers, date, numDays) {
+    let body = {
+        id: number, 
+        userID: id, 
+        destinationID: parseInt(destinationID), 
+        travelers: numTravelers, 
+        date: date, 
+        duration: numDays, 
+        status: "pending", 
+        suggestedActivities: []
+    }
+    console.log("body:", body)
+    return fetch(`http://localhost:3001/api/v1/trips`, {
         method: "POST",
-        body: JSON.stringify({id: number, 
-               userID: id, 
-               destinationID: destinationID, 
-               travelers: numTravelers, 
-               date: date, 
-               duration: numDays, 
-               status: "pending", 
-               suggestedActivities: []
-            }),
+        body: JSON.stringify(body),
         headers: {
             "Content-Type": "application/json"
             }
