@@ -1,6 +1,7 @@
 // IMPORTS
 import { fetchData, postData } from './apiCalls';
 import { calculateTotalSpent, calculateTripCost } from './costs';
+import { imageURLs } from './images';
 
 // QUERY SELECTORS 
 const container = document.querySelector(".container")
@@ -38,6 +39,7 @@ const bottom = document.querySelector("#bottom-div")
 let currentUserID;
 let currentURL;
 let tripID = Date.now() 
+let currentIndex = 0;
 
 // EVENT LISTENERS
 loginButton.addEventListener("click", detectLogin)
@@ -51,10 +53,8 @@ costButton.addEventListener("click", function(event) {
 submitBookingButton.addEventListener("click", function(event) {
     event.preventDefault();
     noPendingTrips.classList.add("hidden")
-    console.log("tripID:", tripID)
     postData(tripID, currentUserID, destinationField.value, travelersField.value, dateField.value, durationField.value)
     .then(data => {
-        console.log("POSTED DATA:", data)
         fetchData(currentURL)
         .then(([userInfo, trips, destinations]) => {
             let id = parseInt(currentUserID)
@@ -73,9 +73,6 @@ function renderDom() {
     destinationField.value = ""
     fetchData(currentURL)
     .then(([userInfo, trips, destinations]) => {
-        console.log("userInfo:", userInfo)
-        console.log("trips:", trips)
-        console.log("destinations:", destinations)
         let id = parseInt(currentUserID)
         displayName(userInfo)
         displayPastTrips(id, trips, destinations)
@@ -190,8 +187,6 @@ function displayPastTrips(id, {trips}, {destinations}) {
 
 function displayPendingTrips(id, {trips}, {destinations}) {
     const pendingTrips = trips.filter((trip) => {
-        console.log("trip.userID:", trip.userID)
-        console.log("id", id)
         return trip.status === "pending" && parseInt(trip.userID) === id
     })
 
@@ -204,7 +199,6 @@ function displayPendingTrips(id, {trips}, {destinations}) {
                 return destination.id === trip.destinationID
             }).image
         })
-        console.log('PENDING TRIPS:', pendingTrips)
     
         pendingTrips.forEach((trip) => {
             pendingGrid.innerHTML += `<div class="individual-trips">
@@ -227,6 +221,15 @@ function displayErrorMessage(error) {
     errorMessage.innerText = `${error}. Please check that your server is running properly.`
     errorMessage.classList.remove("hidden")
 }
+
+function changeBackgroundImage() {
+    document.body.style.backgroundImage = `url('${imageURLs[currentIndex]}')`
+    currentIndex = (currentIndex + 1) % imageURLs.length;
+}
+
+changeBackgroundImage()
+setInterval(changeBackgroundImage, 10000);
+
 
 export { displayErrorMessage };
 

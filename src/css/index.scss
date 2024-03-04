@@ -42,6 +42,7 @@ form {
 }
 
 .booking-form {
+  // display: table; 
   width: 50vw;
   height: 27vh;
   border-radius: 10px;
@@ -49,7 +50,14 @@ form {
   left: 25%;
   padding-top: 3%;
   padding-bottom: 3%;
-  text-align: center;
+
+  // div {
+  //   display: table-row;
+  // }
+
+  // label, input {
+  //   display: table-cell;
+  // }
 }
 
 #see-cost-button {
@@ -88,6 +96,11 @@ select, input {
 body {
   background: url('../images/shark-fin-cove.jpg');
   margin: 0;
+  transition: background-image 1.0s ease; 
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #welcome-div {
@@ -114,6 +127,7 @@ h1 {
 
 #total-spent {
   font-weight: bold;
+  font-size: large;
 }
 
 #dashboard {
@@ -176,7 +190,7 @@ h1 {
 
 #bottom-div {
   background-color: $secondary-accent-color;
-  height: 25vh;
+  height: 20vh;
   width: 100vw;
   position: absolute;
   bottom: 0%;
@@ -210,6 +224,10 @@ button {
 
 #see-cost-button {
   height: 6vh;
+}
+
+input {
+  flex: 1; /* Take up remaining space */
 }
 
 #submit-booking-button {
