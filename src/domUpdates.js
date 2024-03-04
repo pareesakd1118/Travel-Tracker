@@ -65,6 +65,9 @@ submitBookingButton.addEventListener("click", function(event) {
     })
         displayForm()
     }) 
+    .catch(err => {
+        displayErrorMessage(err)
+    })
 })
 
 // DOM UPDATE FUNCTIONS
@@ -140,6 +143,9 @@ function displayCost() {
         } else {
             costEstimate.innerText = `${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)}`
         }  
+    })
+    .catch((err) => {
+        displayErrorMessage(err)
     })
 }
 
