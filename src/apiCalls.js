@@ -1,4 +1,4 @@
-//fetch one users data, url will be the main url + current user 
+import { displayErrorMessage } from './domUpdates';
 
 function runGet(url) {
     let gets = [
@@ -12,30 +12,43 @@ function runGet(url) {
 
 function fetchData(url) {
     return Promise.all(runGet(url))
-    .then(res => {
-        return Promise.all(res.map(item => {
-            return item.json()
-        }))
-    })   
+        .then(res => {
+            const allResponsesOk = res.every(item => item.ok);
+            
+            if (allResponsesOk) {
+                return Promise.all(res.map(item => item.json()));
+            } else {
+                displayErrorMessage("ERROR:")
+            }
+        }) 
 }
 
-function postData(url, number, id, destinationID, numTravelers, date, numDays) {
-    return fetch(url, {
+function postData(number, id, destinationID, numTravelers, date, numDays) {
+    let body = {
+        id: number, 
+        userID: id, 
+        destinationID: parseInt(destinationID), 
+        travelers: numTravelers, 
+        date: date, 
+        duration: numDays, 
+        status: "pending", 
+        suggestedActivities: []
+    }
+    console.log("body:", body)
+    return fetch(`http://localhost:3001/api/v1/trips`, {
         method: "POST",
-        body: JSON.stringify({id: number, 
-               userID: id, 
-               destinationID: destinationID, 
-               travelers: numTravelers, 
-               date: date, 
-               duration: numDays, 
-               status: "pending", 
-               suggestedActivities: []
-            }),
+        body: JSON.stringify(body),
         headers: {
             "Content-Type": "application/json"
             }
     })
-    .then(res => res.json())
+    .then(res => {
+        if (res.ok) {
+            return res.json()
+        } else {
+            displayErrorMessage("ERROR:")
+        }
+    })
 }
 
 export { fetchData, postData };

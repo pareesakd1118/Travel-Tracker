@@ -4,6 +4,7 @@ import { calculateTotalSpent, calculateTripCost } from './costs';
 
 // QUERY SELECTORS 
 const container = document.querySelector(".container")
+const errorMessage = document.querySelector("#error-message")
 const loginPage = document.querySelector("#login-page")
 const loginButton = document.querySelector("#login-button")
 const usernameField = document.querySelector("#username-field")
@@ -23,6 +24,7 @@ const bookNowButton = document.querySelector(".book-now-button")
 const bookingForm = document.querySelector(".booking-form")
 const pastBookButton = document.querySelector("#past-book-button")
 const pendingBookButton = document.querySelector("#pending-book-button")
+const costEstimateDiv = document.querySelector(".cost-estimate-div")
 const costEstimate = document.querySelector("#cost-estimate")
 const costButton = document.querySelector("#see-cost-button")
 const destinationField = document.querySelector("#destination-field")
@@ -32,14 +34,10 @@ const durationField = document.querySelector("#duration-field")
 const submitBookingButton = document.querySelector("#submit-booking-button")
 const bottom = document.querySelector("#bottom-div")
 
-
-
 // GLOBAL VARIABLES 
 let currentUserID;
 let currentURL;
-let postURL = "http://localhost:3001/api/v1/trips"
-let tripID = 203 
- 
+let tripID = Date.now() 
 
 // EVENT LISTENERS
 loginButton.addEventListener("click", detectLogin)
@@ -52,17 +50,25 @@ costButton.addEventListener("click", function(event) {
 })
 submitBookingButton.addEventListener("click", function(event) {
     event.preventDefault();
-    tripID += 1
-    console.log(tripID)
-    postData(postURL, tripID, currentUserID, destinationField.value, travelersField.value, dateField.value, durationField.value)
+    console.log("tripID:", tripID)
+    postData(tripID, currentUserID, destinationField.value, travelersField.value, dateField.value, durationField.value)
     .then(data => {
-        (console.log("we made it here"))
-        renderDom()
+        console.log("POSTED DATA:", data)
+        fetchData(currentURL)
+        .then(([userInfo, trips, destinations]) => {
+            console.log("HEREEEuserInfo:", userInfo)
+            console.log("HEREEEtrips:", trips)
+            console.log("HEREEEdestinations:", destinations)
+            let id = parseInt(currentUserID)
+            pendingGrid.innerHTML = ""
+            displayPendingTrips(id, trips, destinations)
+    })
         displayForm()
-    })   
+    }) 
+    .catch(err => {
+        displayErrorMessage(err)
+    })
 })
-
-
 
 // DOM UPDATE FUNCTIONS
 function renderDom() {
@@ -72,11 +78,14 @@ function renderDom() {
         console.log("userInfo:", userInfo)
         console.log("trips:", trips)
         console.log("destinations:", destinations)
-        let id = userInfo.id
+        let id = parseInt(currentUserID)
         displayName(userInfo)
         displayPastTrips(id, trips, destinations)
         displayPendingTrips(id, trips, destinations)
         displayTotalSpent(id, trips, destinations)
+    })
+    .catch((err) => {
+        displayErrorMessage(err)
     })
 }
 
@@ -117,24 +126,28 @@ function displayForm() {
         travelersField.value = "";
         durationField.value = "";
         costEstimate.innerText = "";
-        submitBookingButton.classList.add("hidden")
+        costEstimateDiv.classList.add("hidden")
     }
 }
 
 function displayCost() {
-    submitBookingButton.classList.remove("hidden")
+    costEstimateDiv.classList.remove("hidden")
+
     fetchData(currentURL)
     .then(([userInfo, trips, destinations]) => {
-        costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
-    }) 
+        if (typeof calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations) === "number") {
+            costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
+            submitBookingButton.classList.remove("hidden")
+        } else if (destinationField.value === "" || durationField.value === "" || travelersField.value === "" || dateField.value === "") {
+            costEstimate.innerText = `Please fill out missing field(s).`
+        } else {
+            costEstimate.innerText = `${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)}`
+        }  
+    })
+    .catch((err) => {
+        displayErrorMessage(err)
+    })
 }
-
-// As a traveler:
-
-// I should be able to make a trip request:
-// I will select a date, duration, number of travelers and choose from a list of destinations
-// After making these selections, I should see an estimated cost (with a 10% travel agent fee) for the trip.
-// Once I submit the trip request, it will show on my dashboard as “pending” so that the travel agency can approve or deny it.
 
 function displayName({name}) {
     domName.innerText = name
@@ -179,7 +192,7 @@ function displayPastTrips(id, {trips}, {destinations}) {
 
 function displayPendingTrips(id, {trips}, {destinations}) {
     const pendingTrips = trips.filter((trip) => {
-        return trip.userID === id && trip.status !== "approved"
+        return trip.status === "pending"
     })
 
     if (pendingTrips.length) {
@@ -194,17 +207,25 @@ function displayPendingTrips(id, {trips}, {destinations}) {
         console.log('PENDING TRIPS:', pendingTrips)
     
         pendingTrips.forEach((trip) => {
-            pendingGrid.innerHTML += `<div>
+            pendingGrid.innerHTML += `<div class="individual-trips">
                                         <h3>${trip.destinationName}</h3>
-        
                                         <p>${trip.date}</p>
                                         <p>Party of ${trip.travelers}</p
                                     </div>`
         })
-
     } else {
         noPendingTrips.classList.remove('hidden')
     }
 }
 
+function displayErrorMessage(error) {
+    container.classList.add("hidden")
+    loginPage.classList.add("hidden")
+    bookingForm.classList.add("hidden")
+    header.classList.add("hidden")
+    errorMessage.innerText = `${error}. Please check that your server is running properly.`
+    errorMessage.classList.remove("hidden")
+}
+
+export { displayErrorMessage };
 

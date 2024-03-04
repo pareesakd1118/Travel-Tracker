@@ -43,10 +43,13 @@ form {
 
 .booking-form {
   width: 50vw;
-  height: 30vh;
+  height: 27vh;
   border-radius: 10px;
   position: absolute;
   left: 25%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  text-align: center;
 }
 
 #see-cost-button {
@@ -60,9 +63,22 @@ header {
   margin-right: 3%;
   padding-top: .75%;
 }
+
+#error-message {
+  padding-top: 5%;
+  height: 20vh;
+  background-color: $main-accent-color;
+  font-size: xx-large;
+  padding-left: 3%;
+
+  button {
+    background-color: $tertiary-accent-color;
+  }
+}
   
 select, input {
   color: black;
+  width: 145px;
 }
 
 #turing-logo {
@@ -152,6 +168,7 @@ h1 {
 
 #pending-book-button, 
 #past-book-button,
+#submit-booking-button,
 #login-button {
   background-color: $tertiary-accent-color;
 }
@@ -171,12 +188,32 @@ button {
   width: 100px;
 }
 
-.booking-form-container {
-  height: 80%;
-  width: 50%;
-  border-radius: 10px;
-  padding-top: 2%;
+.cost-estimate-div {
+  @include flexColumn();
+  justify-content: space-between;
   background-color: $main-accent-color;
+  width: 50vw;
+  height: 15vh;
+  border-radius: 10px;
+  position: absolute;
+  top: 48%;
+  left: 25%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+#cost-estimate {
+  width: 40vw;
+  align-self: center;
+}
+
+#see-cost-button {
+  height: 6vh;
+}
+
+#submit-booking-button {
+  height: 6vh;
+  width: 150px;
 }
 
 .book-now-button {
