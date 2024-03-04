@@ -180,7 +180,7 @@ function displayPastTrips(id, {trips}, {destinations}) {
         pastTrips.forEach((trip) => {
             pastGrid.innerHTML += `<div class="individual-trips">
                                         <h3>${trip.destinationName}</h3>
-                                        <img class="trip-image" src=${trip.image} alt="picture of ${trip.destinationName}"
+                                        <img class="trip-image" src=${trip.image} alt="picture of ${trip.destinationName}">
                                         <p>${trip.date}</p>
                                         <p>Party of ${trip.travelers}</p
                                     </div>`
@@ -192,7 +192,9 @@ function displayPastTrips(id, {trips}, {destinations}) {
 
 function displayPendingTrips(id, {trips}, {destinations}) {
     const pendingTrips = trips.filter((trip) => {
-        return trip.status === "pending"
+        console.log("trip.userID:", trip.userID)
+        console.log("id", id)
+        return trip.status === "pending" 
     })
 
     if (pendingTrips.length) {
@@ -209,6 +211,7 @@ function displayPendingTrips(id, {trips}, {destinations}) {
         pendingTrips.forEach((trip) => {
             pendingGrid.innerHTML += `<div class="individual-trips">
                                         <h3>${trip.destinationName}</h3>
+                                        <img class="trip-image" src=${trip.image} alt="picture of ${trip.destinationName}">
                                         <p>${trip.date}</p>
                                         <p>Party of ${trip.travelers}</p
                                     </div>`

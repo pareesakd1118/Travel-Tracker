@@ -72,7 +72,7 @@
       </select>
       </div>
       <div class="form-example">
-        <label for="email">Start Date </label>
+        <label for="date">Start Date</label>
         <input type="text" placeholder="YYYY/MM/DD" id="date-field"  required>
       </div>
       <div class="form-example">
@@ -94,12 +94,12 @@
       <h3 id="please-login">Please log in below</h3>
       <form id="login-form">
         <div class="form-example">
-          <label for="email">Username</label>
-          <input type="text" placeholder="Enter Username" id="username-field" required>
+          <label for="username">Username</label>
+          <input name="username" type="text" placeholder="Enter Username" id="username-field" required>
         </div>
         <div class="form-example">
-          <label for="email">Password</label>
-          <input type="text" placeholder="Enter Password" id="password-field" required>
+          <label for="password">Password</label>
+          <input name="password" type="text" placeholder="Enter Password" id="password-field" required>
         </div>
         <button id="login-button">Login</button>
       </form>
@@ -117,7 +117,7 @@
           <h2>PAST TRIPS</h2>
           <div class="past-grid grid-container"></div>
           <div class="no-past-trips hidden">
-            <h4>You haven't taken any trips with us yet!</h4>
+            <h3>You haven't taken any trips with us yet!</h3>
             <button id="past-book-button">Book now!</button>
           </div>
         </div>
@@ -125,7 +125,7 @@
           <h2>PENDING TRIPS</h2>
           <div class="pending-grid grid-container"></div>
           <div class="no-pending-trips hidden">
-            <h4>You don't have any trips on the books!</h4>
+            <h3>You don't have any trips on the books!</h3>
             <button id="pending-book-button">Book Now!</button>
           </div>
         </div>

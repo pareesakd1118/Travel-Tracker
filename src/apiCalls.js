@@ -34,7 +34,6 @@ function postData(number, id, destinationID, numTravelers, date, numDays) {
         status: "pending", 
         suggestedActivities: []
     }
-    console.log("body:", body)
     return fetch(`http://localhost:3001/api/v1/trips`, {
         method: "POST",
         body: JSON.stringify(body),
