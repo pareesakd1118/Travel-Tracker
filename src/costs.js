@@ -7,10 +7,10 @@ function calculateTotalSpent(id, {trips}, {destinations}) {
     if (array.length) {
         array.forEach((trip) => {
             let destination = destinations.find((destination) => {
-                return trip.destinationID === destination.id
+                return trip.destinationID === destination.id;
             })
     
-            total += ((trip.travelers * destination.estimatedFlightCostPerPerson) + (trip.travelers * trip.duration * destination.estimatedLodgingCostPerDay))
+            total += ((trip.travelers * destination.estimatedFlightCostPerPerson) + (trip.travelers * trip.duration * destination.estimatedLodgingCostPerDay));
         });
     
         return total * 1.1;
@@ -32,25 +32,25 @@ function calculateTripCost(destinationID, numDays, numTravelers, {destinations})
 }
 
 function reformatDate(date) {
-    const array = date.split("")
-    const firstHalf = array.slice(-5).join("")
-    const secondHalf = array.slice(0, 4).join("")
-    const reformattedDate = firstHalf + "/" + secondHalf
+    const array = date.split("");
+    const firstHalf = array.slice(-5).join("");
+    const secondHalf = array.slice(0, 4).join("");
+    const reformattedDate = firstHalf + "/" + secondHalf;
 
     if (array[4] === "/" && array[7] === "/") {
-        return reformattedDate
+        return reformattedDate;
     } else {
-        return date
+        return date;
     }
 }
 
 function reformatDestination(destination) {
-    const array = destination.split(",")
+    const array = destination.split(",");
 
     if (array.length > 1) {
-        return `${array[0]},<br>${array[1]}`
+        return `${array[0]},<br>${array[1]}`;
     } else {
-        return destination 
+        return destination; 
     }
 }
 

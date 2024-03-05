@@ -5,9 +5,9 @@ function runGet(url) {
         fetch(url),
         fetch("http://localhost:3001/api/v1/trips"),
         fetch("http://localhost:3001/api/v1/destinations"),
-    ]
+    ];
 
-    return gets
+    return gets;
 }
 
 function fetchData(url) {
@@ -18,9 +18,9 @@ function fetchData(url) {
             if (allResponsesOk) {
                 return Promise.all(res.map(item => item.json()));
             } else {
-                displayErrorMessage("ERROR:")
+                displayErrorMessage("ERROR:");
             }
-        }) 
+        }); 
 }
 
 function postData(number, id, destinationID, numTravelers, date, numDays) {
@@ -33,7 +33,7 @@ function postData(number, id, destinationID, numTravelers, date, numDays) {
         duration: numDays, 
         status: "pending", 
         suggestedActivities: []
-    }
+    };
     return fetch(`http://localhost:3001/api/v1/trips`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -47,7 +47,7 @@ function postData(number, id, destinationID, numTravelers, date, numDays) {
         } else {
             displayErrorMessage("ERROR:")
         }
-    })
+    });
 }
 
 export { fetchData, postData };

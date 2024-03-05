@@ -8,6 +8,6 @@ const imageURLs = [
     '../images/borabora1.png',
     '../images/tokyo.png',
     '../images/borabora2.png',
-]
+];
 
-export { imageURLs }
+export { imageURLs };
