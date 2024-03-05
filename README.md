@@ -1,4 +1,4 @@
-# <p align="center">FitLit</p>
+# <p align="center">TravelTracker</p>
 
 <p align="center">This is a web application which a user must sign into, and upon signing in they are brought to a dashboard which display's the specific user's past trips and pending (trips awaiting travel agent booking/approval), including location, duration of trip and party size. The dashboard also shows the user the total amount they have spent on travels within the past year, and the option to submit a request for a new trip. To do so, the user must fill out a form including destination, duration of trip, start date of trip and total number of travelers. The user will then see an estimated cost of the trip before they choose to submit the booking request to the pending trips dashboard for agent approval.</p>
 
