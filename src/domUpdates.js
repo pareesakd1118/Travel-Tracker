@@ -48,7 +48,7 @@ pastBookButton.addEventListener("click", displayForm);
 pendingBookButton.addEventListener("click", displayForm);
 costButton.addEventListener("click", function(event) {
     event.preventDefault(); 
-    displayCost()
+    displayCost();
 });
 submitBookingButton.addEventListener("click", function(event) {
     event.preventDefault();
