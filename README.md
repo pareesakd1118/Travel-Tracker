@@ -11,7 +11,7 @@
 
 ## Preview:
 <div align="center">
-  <img src="https://github.com/tednaphil/FitLit/blob/spike/tp/.github/FitLit2.0.gif" alt="app demo">
+  <img src="./Recorded_screen_1_V1.mp4" alt="app demo">
 
 </div>
 
