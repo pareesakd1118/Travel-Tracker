@@ -17,9 +17,9 @@
   </header>
   <body>
     <form class="booking-form hidden">
-      <div class="form-example">
-        <label for="name">Select Destination</label>
-        <select type="text" placeholder="City, Country" id="destination-field" required >
+      <div>
+        <label for="destination-field">Select Destination</label>
+        <select tabindex="0" type="text" placeholder="City, Country" id="destination-field" required >
           <option value="1">Lima, Peru</option>
           <option value="2">Stockholm, Sweden</option>
           <option value="3">Sydney, Austrailia</option>
@@ -72,37 +72,37 @@
           <option value="50">Hobart, Tasmania</option>
       </select>
       </div>
-      <div class="form-example">
-        <label for="date">Start Date</label>
-        <input type="text" placeholder="YYYY/MM/DD" id="date-field"  required>
+      <div>
+        <label for="date-field">Start Date</label>
+        <input type="date" placeholder="YYYY/MM/DD" id="date-field" tabindex="0" required>
       </div>
-      <div class="form-example">
-        <label for="name">Number of Travelers </label>
-        <input type="number" placeholder="Enter Number" id="travelers-field" min="1" max="100" step="1" required>
+      <div>
+        <label for="travelers-field">Number of Travelers </label>
+        <input type="number" placeholder="Enter Number" id="travelers-field" tabindex="0" min="1" max="100" step="1" required>
       </div>
-      <div class="form-example">
-        <label for="email">Number of Days</label>
-        <input type="number" placeholder="Enter Number" id="duration-field" min="1" max="1000" step="1" required>
+      <div>
+        <label for="duration-field">Number of Days</label>
+        <input type="number" placeholder="Enter Number" id="duration-field" tabindex="0" min="1" max="1000" step="1" required>
       </div>
-      <button id="see-cost-button">See Cost Estimate</button>
+      <button tabindex="0" id="see-cost-button">See Cost Estimate</button>
     </form>
     <div class="cost-estimate-div hidden">
       <p id="cost-estimate"></p>
-      <button id="submit-booking-button" class="hidden">Submit Booking Request</button>
+      <button tabindex="0" id="submit-booking-button" class="hidden">Submit Booking Request</button>
     </div>
     <div id="login-page">
       <h2 id="login-welcome">Welcome to <span>TravelTracker</span></h2>
       <h3 id="please-login">Please log in below</h3>
       <form id="login-form">
-        <div class="form-example">
-          <label for="username">Username</label>
-          <input name="username" type="text" placeholder="Enter Username" id="username-field" required>
+        <div>
+          <label for="username-field">Username</label>
+          <input tabindex="0" name="username" type="text" placeholder="Enter Username" id="username-field" required>
         </div>
-        <div class="form-example">
-          <label for="password">Password</label>
-          <input name="password" type="password" placeholder="Enter Password" id="password-field" required>
+        <div>
+          <label for="password-field">Password</label>
+          <input tabindex="0" name="password" type="password" placeholder="Enter Password" id="password-field" required>
         </div>
-        <button id="login-button">Login</button>
+        <button tabindex="0" id="login-button">Login</button>
       </form>
       <p id="incorrect-login"></p>
     </div>
@@ -119,7 +119,7 @@
           <div class="past-grid grid-container"></div>
           <div class="no-past-trips hidden">
             <h3>You haven't taken any trips with us yet!</h3>
-            <button id="past-book-button">Book now!</button>
+            <button tabindex="0" id="past-book-button">Book now!</button>
           </div>
         </div>
         <div class="dashboard-widget pending" id="pending-trips">
@@ -127,7 +127,7 @@
           <div class="pending-grid grid-container"></div>
           <div class="no-pending-trips hidden">
             <h3>You don't have any trips on the books!</h3>
-            <button id="pending-book-button">Book Now!</button>
+            <button tabindex="0" id="pending-book-button">Book Now!</button>
           </div>
         </div>
       </div>
