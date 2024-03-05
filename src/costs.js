@@ -37,7 +37,7 @@ function reformatDate(date) {
     const secondHalf = array.slice(0, 4).join("")
     const reformattedDate = firstHalf + "/" + secondHalf
 
-    if (array[4] === "/") {
+    if (array[4] === "/" && array[7] === "/") {
         return reformattedDate
     } else {
         return date
@@ -46,7 +46,6 @@ function reformatDate(date) {
 
 function reformatDestination(destination) {
     const array = destination.split(",")
-    console.log("array:", array)
 
     if (array.length > 1) {
         return `${array[0]},<br>${array[1]}`

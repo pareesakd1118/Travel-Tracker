@@ -37,7 +37,7 @@ describe('costs-test.js', function() {
   });
 
   describe('reformat a date', function() {
-    it('should reformat a date so that year goes first', function() {
+    it('should reformat a date so that it is MM/DD/YYYY', function() {
       const date1 = reformatDate("2022/01/15");
       const date2 = reformatDate("2023/11/03");
 
@@ -45,7 +45,7 @@ describe('costs-test.js', function() {
       expect(date2).to.equal("11/03/2023");
     });
 
-    it('should not reformat a date that is formatted with month first', function() {
+    it('should not reformat a date that is already formatted correctly', function() {
       const date1 = reformatDate("01/15/2020");
 
       expect(date1).to.equal("01/15/2020");
@@ -61,7 +61,7 @@ describe('costs-test.js', function() {
       expect(destination2).to.equal("Madrid,<br> Spain");
     });
 
-    it('should not reformat destination if no comma present', function() {
+    it('should not reformat destination if only a city or country name is included', function() {
       const destination1 = reformatDestination("Tehran");
 
       expect(destination1).to.equal("Tehran");
