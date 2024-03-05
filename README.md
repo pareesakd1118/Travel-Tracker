@@ -13,6 +13,10 @@
 <div align="center">
   <img src="./Recorded_screen_1_V1.mp4" alt="app demo">
 
+
+https://github.com/pareesakd1118/Travel-Tracker/assets/150022029/910cff6b-8f0e-41af-8db2-f44e589d765f
+
+
 </div>
 
 <p align="center">Technologies Used</p>
