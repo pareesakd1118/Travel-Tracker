@@ -9,17 +9,7 @@
 
 </div>
 
-## Preview:
-<div align="center">
-  <img src="./Recorded_screen_1_V1.mp4" alt="app demo">
-
-
-https://github.com/pareesakd1118/Travel-Tracker/assets/150022029/910cff6b-8f0e-41af-8db2-f44e589d765f
-
-
-</div>
-
-<p align="center">Technologies Used</p>
+### <p align="center">Technologies Used</p>
 <div align="center">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=for-the-badge" alt="javascript badge">
   <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=for-the-badge" alt="html badge">
@@ -28,6 +18,16 @@ https://github.com/pareesakd1118/Travel-Tracker/assets/150022029/910cff6b-8f0e-4
   <img src="https://img.shields.io/badge/Chai-A30701?logo=chai&logoColor=fff&style=for-the-badge" alt="chai badge">
   <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?logo=visualstudiocode&logoColor=fff&style=for-the-badge" alt="vscode badge">
   <img src="https://img.shields.io/badge/Lighthouse-F44B21?logo=lighthouse&logoColor=fff&style=for-the-badge" alt="lighthouse badge">
+</div>
+
+## Preview:
+<div align="center">
+
+
+
+https://github.com/pareesakd1118/Travel-Tracker/assets/150022029/910cff6b-8f0e-41af-8db2-f44e589d765f
+
+
 </div>
 
 ## Installation Instructions:
