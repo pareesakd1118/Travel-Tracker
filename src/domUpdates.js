@@ -130,12 +130,12 @@ function displayCost() {
 
     fetchData(currentURL)
     .then(([userInfo, trips, destinations]) => {
-        if (calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations) > 0) {
-            costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
-            submitBookingButton.classList.remove("hidden")
-        } else if (destinationField.value === "" || durationField.value === "" || travelersField.value === "" || dateField.value === "") {
+        if (destinationField.value === "" || durationField.value === "" || travelersField.value === "" || dateField.value === "") {
             costEstimate.innerText = `Please fill out missing field(s).`
             submitBookingButton.classList.add("hidden")
+        } else if (calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations) > 0) {
+            costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
+            submitBookingButton.classList.remove("hidden")
         } else {
             costEstimate.innerText = `${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)}`
             submitBookingButton.classList.add("hidden")
