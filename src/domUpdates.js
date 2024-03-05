@@ -1,6 +1,7 @@
 // IMPORTS
 import { fetchData, postData } from './apiCalls';
-import { calculateTotalSpent, calculateTripCost } from './costs';
+import { calculateTotalSpent, calculateTripCost, reformatDate, reformatDestination } from './costs';
+import { imageURLs } from './images';
 
 // QUERY SELECTORS 
 const container = document.querySelector(".container")
@@ -38,6 +39,7 @@ const bottom = document.querySelector("#bottom-div")
 let currentUserID;
 let currentURL;
 let tripID = Date.now() 
+let currentIndex = 0;
 
 // EVENT LISTENERS
 loginButton.addEventListener("click", detectLogin)
@@ -51,10 +53,8 @@ costButton.addEventListener("click", function(event) {
 submitBookingButton.addEventListener("click", function(event) {
     event.preventDefault();
     noPendingTrips.classList.add("hidden")
-    console.log("tripID:", tripID)
     postData(tripID, currentUserID, destinationField.value, travelersField.value, dateField.value, durationField.value)
     .then(data => {
-        console.log("POSTED DATA:", data)
         fetchData(currentURL)
         .then(([userInfo, trips, destinations]) => {
             let id = parseInt(currentUserID)
@@ -73,9 +73,6 @@ function renderDom() {
     destinationField.value = ""
     fetchData(currentURL)
     .then(([userInfo, trips, destinations]) => {
-        console.log("userInfo:", userInfo)
-        console.log("trips:", trips)
-        console.log("destinations:", destinations)
         let id = parseInt(currentUserID)
         displayName(userInfo)
         displayPastTrips(id, trips, destinations)
@@ -133,13 +130,15 @@ function displayCost() {
 
     fetchData(currentURL)
     .then(([userInfo, trips, destinations]) => {
-        if (typeof calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations) === "number") {
+        if (calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations) > 0) {
             costEstimate.innerText = `The estimated cost of this trip is ${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)} USD, including a 10% agent's fee. Submit booking request to agent below or update trip details.`
             submitBookingButton.classList.remove("hidden")
         } else if (destinationField.value === "" || durationField.value === "" || travelersField.value === "" || dateField.value === "") {
             costEstimate.innerText = `Please fill out missing field(s).`
+            submitBookingButton.classList.add("hidden")
         } else {
             costEstimate.innerText = `${calculateTripCost(parseInt(destinationField.value), durationField.value, travelersField.value, destinations)}`
+            submitBookingButton.classList.add("hidden")
         }  
     })
     .catch((err) => {
@@ -154,9 +153,9 @@ function displayName({name}) {
 function displayTotalSpent(id, {trips}, {destinations}) {
     let total = calculateTotalSpent(id, {trips}, {destinations})
     if (typeof total === "number") {
-        totalSpent.innerText = `You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with TravelTracker this year. Users save an average of 18% when booking with TravelTracker.`
+        totalSpent.innerHTML = `<p>You have spent a total of $${calculateTotalSpent(id, {trips}, {destinations})} with <span>TravelTracker</span> this year. Users save an average of 18% when booking with <span>TravelTracker.</span></p>`
     } else {
-        totalSpent.innerText = calculateTotalSpent(id, {trips}, {destinations})
+        totalSpent.innerHTML = calculateTotalSpent(id, {trips}, {destinations})
     }
 }
 
@@ -177,9 +176,9 @@ function displayPastTrips(id, {trips}, {destinations}) {
     
         pastTrips.forEach((trip) => {
             pastGrid.innerHTML += `<div class="individual-trips">
-                                        <h3>${trip.destinationName}</h3>
+                                        <h3>${reformatDestination(trip.destinationName)}</h3>
                                         <img class="trip-image" src=${trip.image} alt="picture of ${trip.destinationName}">
-                                        <p>${trip.date}</p>
+                                        <p>${reformatDate(trip.date)}</p>
                                         <p>Party of ${trip.travelers}</p
                                     </div>`
         })
@@ -190,8 +189,6 @@ function displayPastTrips(id, {trips}, {destinations}) {
 
 function displayPendingTrips(id, {trips}, {destinations}) {
     const pendingTrips = trips.filter((trip) => {
-        console.log("trip.userID:", trip.userID)
-        console.log("id", id)
         return trip.status === "pending" && parseInt(trip.userID) === id
     })
 
@@ -204,13 +201,12 @@ function displayPendingTrips(id, {trips}, {destinations}) {
                 return destination.id === trip.destinationID
             }).image
         })
-        console.log('PENDING TRIPS:', pendingTrips)
     
         pendingTrips.forEach((trip) => {
             pendingGrid.innerHTML += `<div class="individual-trips">
-                                        <h3>${trip.destinationName}</h3>
+                                        <h3>${reformatDestination(trip.destinationName)}</h3>
                                         <img class="trip-image" src=${trip.image} alt="picture of ${trip.destinationName}">
-                                        <p>${trip.date}</p>
+                                        <p>${reformatDate(trip.date)}</p>
                                         <p>Party of ${trip.travelers}</p
                                     </div>`
         })
@@ -227,6 +223,14 @@ function displayErrorMessage(error) {
     errorMessage.innerText = `${error}. Please check that your server is running properly.`
     errorMessage.classList.remove("hidden")
 }
+
+function changeBackgroundImage() {
+    document.body.style.backgroundImage = `url('${imageURLs[currentIndex]}')`
+    currentIndex = (currentIndex + 1) % imageURLs.length;
+}
+
+changeBackgroundImage()
+setInterval(changeBackgroundImage, 15000);
 
 export { displayErrorMessage };
 

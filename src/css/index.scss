@@ -11,6 +11,10 @@
   height: 33vh;
   width: 100%;
   @include flexColumn();
+  
+  span {
+    color: $main-font-color
+  }
 }
 
 #login-form {
@@ -49,7 +53,6 @@ form {
   left: 25%;
   padding-top: 3%;
   padding-bottom: 3%;
-  text-align: center;
 }
 
 #see-cost-button {
@@ -88,6 +91,11 @@ select, input {
 body {
   background: url('../images/shark-fin-cove.jpg');
   margin: 0;
+  transition: background-image 1.0s ease; 
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #welcome-div {
@@ -105,6 +113,10 @@ body {
       color: black;
       font-weight: bold;
     }
+
+  span {
+    font-size: large;
+  }
 }
 
 h1 {
@@ -114,6 +126,8 @@ h1 {
 
 #total-spent {
   font-weight: bold;
+  font-size: large;
+  margin-top: 0;
 }
 
 #dashboard {
@@ -176,7 +190,7 @@ h1 {
 
 #bottom-div {
   background-color: $secondary-accent-color;
-  height: 25vh;
+  height: 20vh;
   width: 100vw;
   position: absolute;
   bottom: 0%;
@@ -187,6 +201,7 @@ button {
   border-radius: 5px;
   height: 25px;
   width: 100px;
+  cursor: pointer;
 }
 
 .cost-estimate-div {
@@ -197,7 +212,7 @@ button {
   height: 15vh;
   border-radius: 10px;
   position: absolute;
-  top: 48%;
+  top: 50%;
   left: 25%;
   padding-top: 1%;
   padding-bottom: 1%;
@@ -208,12 +223,12 @@ button {
   align-self: center;
 }
 
-#see-cost-button {
+#see-cost-button, 
+#submit-booking-button {
   height: 6vh;
 }
 
 #submit-booking-button {
-  height: 6vh;
   width: 150px;
 }
 
@@ -221,6 +236,11 @@ button {
   background-color: $main-accent-color;
   height: 50px;
   width: 130px;
+}
+
+span {
+  font-family: "Audiowide", sans-serif;
+  color: $main-accent-color;
 }
 
 .hidden {
