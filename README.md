@@ -37,12 +37,12 @@ https://github.com/pareesakd1118/Travel-Tracker/assets/150022029/910cff6b-8f0e-4
     git clone git@github.com:turingschool-examples/travel-tracker-api.git
     ```
     
-- run `cd travel-tracker-api`
-- run `npm install` to install packages
-- run `npm start` to run the local server
-- navigate to this [link](https://tednaphil.github.io/FitLit/)
+- Run `cd travel-tracker-api`
+- Run `npm install` to install packages
+- Run `npm start` to run the local server
+- Navigate to this [link](https://tednaphil.github.io/FitLit/)
 - Sign in using a username of traveler + and number 1-50 (no space between 1 and 50) and password of traveler. Each different username will gather that specific user's information
-- use `CTRL + C` to stop running the local server when finished browsing the dashboard
+- Type `CTRL + C` in terminal where server is running to stop running the local server when finished browsing the dashboard
 
 ## Context:
 <!-- wins, challenges, time spent, etc -->
